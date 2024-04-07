@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/tharun-portfolio/static/css/main.7dbc452d.css",
+    "main.js": "/tharun-portfolio/static/js/main.ee932679.js",
+    "static/js/453.815cb98b.chunk.js": "/tharun-portfolio/static/js/453.815cb98b.chunk.js",
+    "static/media/cutout1.png": "/tharun-portfolio/static/media/cutout1.d060ca2d17a2326c3599.png",
+    "static/media/Award.png": "/tharun-portfolio/static/media/Award.2b3f22077c5f2190c83c.png",
+    "static/media/logo.png": "/tharun-portfolio/static/media/logo.3980b31df69f27ae2237.png",
+    "index.html": "/tharun-portfolio/index.html",
+    "main.7dbc452d.css.map": "/tharun-portfolio/static/css/main.7dbc452d.css.map",
+    "main.ee932679.js.map": "/tharun-portfolio/static/js/main.ee932679.js.map",
+    "453.815cb98b.chunk.js.map": "/tharun-portfolio/static/js/453.815cb98b.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7dbc452d.css",
+    "static/js/main.ee932679.js"
+  ]
+}
