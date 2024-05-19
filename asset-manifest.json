@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/tharun-portfolio/static/css/main.93d6eebb.css",
-    "main.js": "/tharun-portfolio/static/js/main.1e02c3e7.js",
+    "main.js": "/tharun-portfolio/static/js/main.d0546c8c.js",
     "static/js/453.815cb98b.chunk.js": "/tharun-portfolio/static/js/453.815cb98b.chunk.js",
     "static/media/cutout1.png": "/tharun-portfolio/static/media/cutout1.d060ca2d17a2326c3599.png",
     "static/media/codeRush.jpg": "/tharun-portfolio/static/media/codeRush.69320694a307477ca520.jpg",
@@ -9,11 +9,11 @@
     "static/media/logo.png": "/tharun-portfolio/static/media/logo.3980b31df69f27ae2237.png",
     "index.html": "/tharun-portfolio/index.html",
     "main.93d6eebb.css.map": "/tharun-portfolio/static/css/main.93d6eebb.css.map",
-    "main.1e02c3e7.js.map": "/tharun-portfolio/static/js/main.1e02c3e7.js.map",
+    "main.d0546c8c.js.map": "/tharun-portfolio/static/js/main.d0546c8c.js.map",
     "453.815cb98b.chunk.js.map": "/tharun-portfolio/static/js/453.815cb98b.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.93d6eebb.css",
-    "static/js/main.1e02c3e7.js"
+    "static/js/main.d0546c8c.js"
   ]
 }
