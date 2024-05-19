@@ -8,6 +8,7 @@ import Education from './components/Education';
 import Awards from './components/Awards';
 import Contact from './components/Contact';
 import { Element } from 'react-scroll';
+import Achievements from './components/Achievements';
 
 function App() {
   return (
@@ -30,7 +31,8 @@ function App() {
       </Element>
 
       <Element name="awards">
-        <Awards />
+        {/* <Awards /> */}
+        <Achievements />
       </Element>
 
       <Element name="contact">
