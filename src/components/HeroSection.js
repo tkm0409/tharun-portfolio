@@ -6,6 +6,9 @@ import { Link } from 'react-scroll';
 
 export default () => {
     const [state, setState] = useState(false);
+    const [isPdfOpen, setIsPdfOpen] = useState(false);
+
+    const togglePdfViewer = () => setIsPdfOpen(!isPdfOpen);
 
     const preventContextMenu = (e) => {
         e.preventDefault();
@@ -27,7 +30,7 @@ export default () => {
     }, []);
 
     const words =
-        "Harnessing over 2 years of hands-on experience, I specialize in sculpting dynamic, user-centric solutions as a seasoned .NET Full Stack Developer. My passion lies in sculpting top-tier code and orchestrating flawless user journeys. Proficient across a spectrum of technologies including .NET, C#, ASP.NET, JavaScript, React, and SQL Server, I am poised to elevate your projects to unprecedented heights. Let's ignite innovation together and breathe life into your visionary concepts!";
+        "Harnessing over 2 years of hands-on experience, I specialize in sculpting dynamic, user-centric solutions as a seasoned .NET Full Stack Developer and RPA expert. My passion lies in crafting top-tier code and orchestrating flawless user journeys. Proficient across a spectrum of technologies including .NET, C#, ASP.NET, JavaScript, React, SQL Server, and Automation Anywhere, I am adept at integrating applications like ServiceNow, Salesforce, DocuSign, and Jira. Let's ignite innovation together and breathe life into your visionary concepts!";
 
     const Brand = () => (
         <div className="flex items-center justify-between py-5 md:block">
@@ -83,9 +86,8 @@ export default () => {
     return (
         <div className="relative">
             <div
-                className={`absolute inset-0 blur-xl h-[580px] pointer-events-none z-0 ${
-                    state ? "hidden" : ""
-                }`}
+                className={`absolute inset-0 blur-xl h-[580px] pointer-events-none z-0 ${state ? "hidden" : ""
+                    }`}
                 style={{
                     background:
                         "linear-gradient(143.6deg, rgba(192, 132, 252, 0) 20.79%, rgba(232, 121, 249, 0.26) 40.92%, rgba(204, 171, 238, 0) 70.35%)",
@@ -99,14 +101,13 @@ export default () => {
                     className={`pb-5 md:text-sm ${state
                         ? "absolute top-0 inset-x-0 bg-white shadow-lg rounded-xl border mx-2 mt-2 md:shadow-none md:border-none md:mx-0 md:mt-0 md:relative md:bg-transparent z-10"
                         : ""
-                    }`}
+                        }`}
                 >
                     <div className="gap-x-14 items-center max-w-screen-xl mx-auto px-4 md:flex md:px-8">
                         <Brand />
                         <div
-                            className={`flex-1 items-center mt-8 md:mt-0 md:flex ${
-                                state ? "block" : "hidden"
-                            } `}
+                            className={`flex-1 items-center mt-8 md:mt-0 md:flex ${state ? "block" : "hidden"
+                                } `}
                         >
                             <ul className="flex-1 justify-center items-center space-y-6 md:flex md:space-x-6 md:space-y-0">
                                 {navigation.map((item, idx) => {
@@ -118,7 +119,7 @@ export default () => {
                                             <Link
                                                 to={item.path}
                                                 className="block text-lg font-bold"
-                                                style={{cursor: 'pointer'}}
+                                                style={{ cursor: 'pointer' }}
                                             >
                                                 {item.title}
                                             </Link>
@@ -127,8 +128,12 @@ export default () => {
                                 })}
                             </ul>
                             <div className="py-2 px-5 rounded-lg font-medium text-white text-center bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700 duration-150 block mt-4 md:mt-0 md:py-3 md:px-6 md:inline">
-                                <a href="javascript:void(0)">
-                                    Download CV
+                                <a
+                                    href="https://drive.google.com/file/d/149CLa1y8IXfUwpKUGM7Fl0XniY1fqX7z/view"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    View Resume
                                 </a>
                             </div>
                         </div>
@@ -149,7 +154,7 @@ export default () => {
                                 </h2>
 
                                 <p className="text-2xl text-blue-600 mb-8">
-                                    .NET Full Stack Developer
+                                    .NET Full Stack Developer/RPA Developer
                                 </p>
                             </>
                         )}

@@ -16,14 +16,14 @@ export default function Experience() {
                         <p className='text-justify'>
                         In my role as a Microsoft full stack engineer at Hexaware Technologies, I am deeply entrenched in the development landscape, crafting innovative applications utilizing cutting-edge technologies such as .NET Core and Angular/React. Seamlessly integrating these solutions with databases and cloud services forms a core aspect of my responsibilities, where I continually strive for excellence and efficiency. Furthermore, I've ventured into the realm of Robotic Process Automation (RPA) using Automation Anywhere, where I've successfully integrated automation workflows with platforms like Salesforce and ServiceNow, amplifying organizational productivity and agility.
                         </p>
-                        <div className="mt-4 space-y-2 text-sm">
+                        {/* <div className="mt-4 space-y-2 text-sm">
                             <button
                                 className="btn"
                                 variant="outline"
                             >
                                 View Projects
                             </button>
-                        </div>
+                        </div> */}
                     </div>
                     <div className="space-y-2 border-t pt-4">
                         <h3 className="text-xl font-bold">Internship</h3>
@@ -31,14 +31,14 @@ export default function Experience() {
                         <p className='text-justify'>
                         Throughout my internship journey at Wipro, I immersed myself in the realm of Selenium automation, harnessing the power of Java to craft robust and efficient solutions. Within this dynamic environment, I actively engaged in enhancing our automation testing processes, leveraging my newfound expertise to drive improvements and streamline workflows.
                         </p>
-                        <div className="mt-4 space-y-2 text-sm">
+                        {/* <div className="mt-4 space-y-2 text-sm">
                             <button
                                 className="btn"
                                 variant="outline"
                             >
                                 View Projects
                             </button>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>
