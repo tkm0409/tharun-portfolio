@@ -1,19 +1,20 @@
 {
   "files": {
-    "main.css": "/tharun-portfolio/static/css/main.93d6eebb.css",
-    "main.js": "/tharun-portfolio/static/js/main.d0546c8c.js",
+    "main.css": "/tharun-portfolio/static/css/main.a81671a2.css",
+    "main.js": "/tharun-portfolio/static/js/main.5b3e31a4.js",
     "static/js/453.815cb98b.chunk.js": "/tharun-portfolio/static/js/453.815cb98b.chunk.js",
     "static/media/cutout1.png": "/tharun-portfolio/static/media/cutout1.d060ca2d17a2326c3599.png",
     "static/media/codeRush.jpg": "/tharun-portfolio/static/media/codeRush.69320694a307477ca520.jpg",
     "static/media/Award.png": "/tharun-portfolio/static/media/Award.2b3f22077c5f2190c83c.png",
+    "static/media/Designathon2024.jpg": "/tharun-portfolio/static/media/Designathon2024.5ac86c63d9dd038db88d.jpg",
     "static/media/logo.png": "/tharun-portfolio/static/media/logo.3980b31df69f27ae2237.png",
     "index.html": "/tharun-portfolio/index.html",
-    "main.93d6eebb.css.map": "/tharun-portfolio/static/css/main.93d6eebb.css.map",
-    "main.d0546c8c.js.map": "/tharun-portfolio/static/js/main.d0546c8c.js.map",
+    "main.a81671a2.css.map": "/tharun-portfolio/static/css/main.a81671a2.css.map",
+    "main.5b3e31a4.js.map": "/tharun-portfolio/static/js/main.5b3e31a4.js.map",
     "453.815cb98b.chunk.js.map": "/tharun-portfolio/static/js/453.815cb98b.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.93d6eebb.css",
-    "static/js/main.d0546c8c.js"
+    "static/css/main.a81671a2.css",
+    "static/js/main.5b3e31a4.js"
   ]
 }
