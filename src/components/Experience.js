@@ -1,45 +1,55 @@
 import React from 'react';
-import "./certificationModal.css";
+import { motion } from 'framer-motion';
+import { FaBriefcase, FaCode, FaRobot, FaCloud, FaDatabase } from 'react-icons/fa';
 
 export default function Experience() {
+    const experiences = [
+        {
+            title: "Software Engineer",
+            company: "Hexaware Technologies",
+            period: "2022-present",
+            description: "As a Microsoft full stack engineer at Hexaware Technologies, I specialize in developing innovative applications using cutting-edge technologies such as .NET Core, Angular, and React. My role involves seamlessly integrating these solutions with databases and cloud services, constantly striving for excellence and efficiency. I've also ventured into Robotic Process Automation (RPA) using Automation Anywhere, successfully integrating automation workflows with platforms like Salesforce and ServiceNow to enhance organizational productivity.",
+            skills: ["C#", ".NET Core", "Angular", "React", "Azure", "RPA", "Salesforce", "ServiceNow"],
+            icon: <FaBriefcase className="text-blue-500" />
+        },
+        {
+            title: "Internship",
+            company: "Wipro",
+            period: "2022",
+            description: "During my internship at Wipro, I immersed myself in Selenium automation, leveraging Java to craft robust and efficient testing solutions. I actively contributed to enhancing automation testing processes, streamlining workflows, and improving overall quality assurance practices.",
+            skills: ["Java", "Selenium", "Automation Testing", "Quality Assurance"],
+            icon: <FaCode className="text-green-500" />
+        }
+    ];
+
     return (
-        <div key="1" className="w-full py-12">
-            <div className="container px-4 space-y-4 md:space-y-8 lg:space-y-10">
-                <header className="space-y-1 text-center">
-                    <h1 className="text-gray-600 dark:text-gray-400 text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl pb-4">Experience</h1>
-                    <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">Past Positions</p>
-                </header>
-                <div className="space-y-8">
-                    <div className="space-y-2">
-                        <h3 className="text-xl font-bold">Software Engineer</h3>
-                        <p className="text-gray-500 dark:text-gray-400">Hexaware Technologies (2022-present)</p>
-                        <p className='text-justify'>
-                        In my role as a Microsoft full stack engineer at Hexaware Technologies, I am deeply entrenched in the development landscape, crafting innovative applications utilizing cutting-edge technologies such as .NET Core and Angular/React. Seamlessly integrating these solutions with databases and cloud services forms a core aspect of my responsibilities, where I continually strive for excellence and efficiency. Furthermore, I've ventured into the realm of Robotic Process Automation (RPA) using Automation Anywhere, where I've successfully integrated automation workflows with platforms like Salesforce and ServiceNow, amplifying organizational productivity and agility.
-                        </p>
-                        {/* <div className="mt-4 space-y-2 text-sm">
-                            <button
-                                className="btn"
-                                variant="outline"
-                            >
-                                View Projects
-                            </button>
-                        </div> */}
-                    </div>
-                    <div className="space-y-2 border-t pt-4">
-                        <h3 className="text-xl font-bold">Internship</h3>
-                        <p className="text-gray-500 dark:text-gray-400">Wipro (2022)</p>
-                        <p className='text-justify'>
-                        Throughout my internship journey at Wipro, I immersed myself in the realm of Selenium automation, harnessing the power of Java to craft robust and efficient solutions. Within this dynamic environment, I actively engaged in enhancing our automation testing processes, leveraging my newfound expertise to drive improvements and streamline workflows.
-                        </p>
-                        {/* <div className="mt-4 space-y-2 text-sm">
-                            <button
-                                className="btn"
-                                variant="outline"
-                            >
-                                View Projects
-                            </button>
-                        </div> */}
-                    </div>
+        <div className="bg-gray-50 py-16">
+            <div className="container mx-auto px-4">
+                <h2 className="text-3xl font-bold text-center text-gray-800 mb-12">Professional Experience</h2>
+                <div className="space-y-12">
+                    {experiences.map((exp, index) => (
+                        <motion.div
+                            key={index}
+                            initial={{ opacity: 0, y: 50 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, delay: index * 0.2 }}
+                            className="bg-white rounded-lg shadow-lg p-6 transition-all duration-300 hover:shadow-xl"
+                        >
+                            <div className="flex items-center mb-4">
+                                {exp.icon}
+                                <h3 className="text-xl font-semibold text-gray-800 ml-3">{exp.title}</h3>
+                            </div>
+                            <p className="text-gray-600 mb-2">{exp.company} | {exp.period}</p>
+                            <p className="text-gray-700 mb-4">{exp.description}</p>
+                            <div className="flex flex-wrap gap-2">
+                                {exp.skills.map((skill, skillIndex) => (
+                                    <span key={skillIndex} className="bg-blue-100 text-blue-800 text-sm font-medium px-2.5 py-0.5 rounded">
+                                        {skill}
+                                    </span>
+                                ))}
+                            </div>
+                        </motion.div>
+                    ))}
                 </div>
             </div>
         </div>

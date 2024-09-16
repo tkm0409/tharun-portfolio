@@ -6,6 +6,7 @@ function Certifications() {
     const [selectedCertification, setSelectedCertification] = useState(null);
 
     const certifications = [
+        { name: "Certified Advanced Automation Professional by Automation Anywhere", description: "Demonstrates advanced proficiency in Robotic Process Automation (RPA) using Automation Anywhere platform. This certification validates expertise in designing, developing, and implementing complex automation solutions for enterprise-level processes, including cognitive automation and AI integration.", link: "https://certificates.automationanywhere.com/047ac704-0a32-4e0a-a106-b6d3fd016b2f" },
         { name: "Microsoft 365 Certified: Fundamentals", description: "Demonstrates foundational knowledge of Microsoft 365 services, including cloud concepts, security, compliance, and modern workplace management.", link: "https://learn.microsoft.com/api/credentials/share/en-gb/TharunkumarMaddala-6138/7A2E40E6796F9E4B?sharingId=3875DA5B9B8F1D57" },
         { name: "Microsoft Certified: Dynamics 365 Customer Service Functional Consultant Associate", description: "Validates expertise in Microsoft Dynamics 365 Customer Service functionality, including case management, knowledge management, and service scheduling.", link: "https://learn.microsoft.com/api/credentials/share/en-gb/TharunkumarMaddala-6138/9898E82F857E45D2?sharingId=3875DA5B9B8F1D57" },
         { name: "Microsoft Certified: Azure Developer Associate", description: "Certifies proficiency in developing and implementing Azure solutions, covering compute, storage, security, and connectivity aspects.", link: "https://learn.microsoft.com/api/credentials/share/en-gb/TharunkumarMaddala-6138/AAB62E5A2F80BF7B?sharingId=3875DA5B9B8F1D57" },
@@ -30,34 +31,52 @@ function Certifications() {
     };
 
     return (
-        <section>
-            <div className="container px-4 space-y-4 md:space-y-8 lg:space-y-10">
-                <header className="space-y-1 text-center">
-                    <h1 className="text-gray-600 dark:text-gray-400 text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl pb-4">Certifications</h1>
-                    <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">Your source for verified industry credentials.</p>
+        <section className="bg-gray-50 dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
+            <div className="max-w-7xl mx-auto">
+                <header className="text-center mb-12">
+                    <h1 className="text-4xl font-extrabold text-gray-900 dark:text-white sm:text-5xl md:text-6xl">
+                        Certifications
+                    </h1>
+                    <p className="mt-3 max-w-md mx-auto text-base text-gray-500 dark:text-gray-400 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
+                        Your source for verified industry credentials.
+                    </p>
                 </header>
-                <div className="container grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
                     {certifications.map((certification, index) => (
-                        <div key={index} className="grid gap-4 w-full mb-8"> {/* Added margin-bottom to create more space */}
-                            <div className="grid gap-2">
-                                <h3 className="text-xl handwritten-style">{certification.name}</h3>
-                                <a href={certification.link} className="text-sm verify-certificate-link" target="_blank" rel="noopener noreferrer">Verify Certificate</a>
-                            </div>
-                            <div className="grid gap-2">
-                                <button onClick={() => openModal(certification)} className="rounded-lg p-2 leading-none text-xs border border-gray-500 hover:bg-gray-100 transition-colors duration-300 ease-in-out">
-                                    View Details
-                                </button>
+                        <div key={index} className="bg-white dark:bg-gray-800 overflow-hidden shadow-lg rounded-lg">
+                            <div className="p-6">
+                                <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">{certification.name}</h3>
+                                <a href={certification.link} className="text-sm text-blue-600 dark:text-blue-400 hover:underline" target="_blank" rel="noopener noreferrer">
+                                    Verify Certificate
+                                </a>
+                                <div className="mt-4">
+                                    <button 
+                                        onClick={() => openModal(certification)} 
+                                        className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                    >
+                                        View Details
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     ))}
                 </div>
             </div>
             {modalOpen && (
-                <div className="fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50 flex justify-center items-center">
-                    <div className="bg-white p-8 rounded-lg max-w-md">
-                        <h2 className="text-xl font-bold mb-4">{selectedCertification.name}</h2>
-                        <p>{selectedCertification.description}</p>
-                        <button onClick={closeModal} className="mt-4 px-4 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700">Close</button>
+                <div className="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center p-4">
+                    <div className="bg-white dark:bg-gray-800 rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full sm:p-6">
+                        <div>
+                            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">{selectedCertification.name}</h2>
+                            <p className="text-gray-700 dark:text-gray-300">{selectedCertification.description}</p>
+                        </div>
+                        <div className="mt-5 sm:mt-6">
+                            <button
+                                onClick={closeModal}
+                                className="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm"
+                            >
+                                Close
+                            </button>
+                        </div>
                     </div>
                 </div>
             )}

@@ -1,4 +1,8 @@
+import { useState } from 'react';
+
 export default () => {
+    const [phoneNumber, setPhoneNumber] = useState('');
+    const [message, setMessage] = useState('');
 
     const contactMethods = [
         {
@@ -10,7 +14,13 @@ export default () => {
             contact: "m.tharunkumar0409@gmail.com",
             title: "Email"
         },
-    ]
+    ];
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const whatsappUrl = `https://wa.me/917995195537?text=${encodeURIComponent(message)}`;
+        window.open(whatsappUrl, '_blank');
+    };
 
     return (
         <main>
@@ -40,6 +50,27 @@ export default () => {
                             ))
                         }
                     </ul>
+                </div>
+                
+                {/* WhatsApp Contact Form */}
+                <div className="mt-12">
+                    <h4 className="text-gray-800 text-lg font-medium mb-4">Contact via WhatsApp</h4>
+                    <form onSubmit={handleSubmit} className="space-y-4">
+                        <div>
+                            <label htmlFor="message" className="block text-sm font-medium text-gray-700">Message</label>
+                            <textarea
+                                id="message"
+                                rows="4"
+                                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+                                value={message}
+                                onChange={(e) => setMessage(e.target.value)}
+                                required
+                            ></textarea>
+                        </div>
+                        <button type="submit" className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600">
+                            Send via WhatsApp
+                        </button>
+                    </form>
                 </div>
             </div>
         </main>

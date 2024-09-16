@@ -37,34 +37,46 @@ const CardFooter = ({ children }) => {
 // Education component
 const Education = () => {
     return (
-        <div className="">
-            <div className="container px-4">
-                <div className="grid gap-0 sm:gap-8 max-w-2xl mx-auto">
-                    <header className="space-y-1 text-center">
-                        <h1 className="text-gray-600 dark:text-gray-400 text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl pb-4">Education</h1>
-                        <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">My academic background and qualifications</p>
+        <section className="py-16">
+            <div className="container px-4 mx-auto">
+                <div className="max-w-3xl mx-auto">
+                    <header className="text-center mb-12">
+                    <h1 className="text-gray-600 dark:text-gray-400 text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl pb-4">Education</h1>
+                    <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">My academic background and qualifications</p>
+               
                     </header>
+                    
 
-                    <div className="space-y-12">
+                    <div className="space-y-8">
                         <Card>
                             <CardHeader>
                                 <CardTitle>Bachelor of Technology</CardTitle>
                                 <CardDescription>Electronics & Communication</CardDescription>
                             </CardHeader>
                             <CardContent>
-                                <p className="text-sm text-gray-400">7.58 CGPA</p>
+                                <div className="flex justify-between items-center">
+                                    <p className="text-lg font-semibold text-gray-700 dark:text-gray-300">7.58 CGPA</p>
+                                    <span className="px-3 py-1 text-sm font-medium text-green-800 bg-green-100 rounded-full">Completed</span>
+                                </div>
+                                <ul className="mt-4 space-y-2 text-gray-600 dark:text-gray-400">
+                                    <li>• Specialized in signal processing and embedded systems</li>
+                                    <li>• Completed a capstone project on IoT-based smart home automation</li>
+                                    <li>• Active member of the college's robotics club</li>
+                                </ul>
                             </CardContent>
                             <CardFooter>
-                                <time className="font-medium">
-                                    2018 - 2022
-                                </time>
+                                <div className="flex justify-between items-center w-full">
+                                    <span className="text-gray-500 dark:text-gray-400">Narayana Engineering College, Gudur</span>
+                                    <time className="font-medium text-gray-600 dark:text-gray-300">2018 - 2022</time>
+                                </div>
                             </CardFooter>
                         </Card>
 
+                        {/* Add more education entries here if needed */}
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
     );
 };
 

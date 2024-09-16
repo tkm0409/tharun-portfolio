@@ -1,117 +1,70 @@
+import React from 'react';
 import award from "../assets/Award.png";
 import codeRush from "../assets/codeRush.jpg";
-import designathon2024 from "../assets/Designathon2024.jpg"
+import designathon2024 from "../assets/gallery/WINNERS.jpeg";
 
 export default function Achievements() {
+    const achievements = [
+        {
+            title: "Hexaware Learning Ambassador",
+            description: "Recognized as a Knowledge Ninja and awarded the Learning Award for Q4 2023 at Hexaware, demonstrating a strong commitment to continuous learning and skill enhancement.",
+            icon: <TrophyIcon className="w-10 h-10 text-purple-600" />,
+            image: award,
+            gradient: "from-purple-100 to-purple-200",
+        },
+        {
+            title: "Designathon 2023",
+            description: "Secured the second position in the Designathon event hosted by Hexaware in 2023, excelling in designing the functional UI for the Performance Management System, earning the Runner Award.",
+            icon: <AwardIcon className="w-10 h-10 text-yellow-600" />,
+            gradient: "from-yellow-100 to-yellow-200",
+        },
+        {
+            title: "CodeRush - 2024",
+            description: "Achieved the 3rd prize at CodeRush – 2024, a prestigious two-day coding sprint focused on Natural Language Processing (NLP), showcasing proficiency and innovation in software development, organized by Hexaware.",
+            icon: <SparklesIcon className="w-10 h-10 text-blue-600" />,
+            image: codeRush,
+            gradient: "from-blue-100 to-blue-200",
+        },
+        {
+            title: "Maverick Designathon - 2024",
+            description: "Won the Maverick Gen AI Designathon 2024, organized by Hexaware Technologies, with the innovative 'AI Powered Panel Slot Allocation' application, showcasing exceptional AI and software development skills.",
+            icon: <StarIcon className="w-10 h-10 text-green-600" />,
+            image: designathon2024,
+            gradient: "from-green-100 to-green-200",
+        },
+    ];
+
     return (
-        <section key="1" className="w-full py-12 md:py-24 lg:py-32">
-            <div
-                className="container px-4 md:px-6"
-            >
-                <div className="flex flex-col items-center justify-center space-y-4 text-center">
-                    <div className="space-y-2"
-                    >
-                        <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Achievements</h2>
-                        <p className="max-w-[700px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                            Check out some of the accomplishments, awards, and milestones I've achieved.
-                        </p>
-                    </div>
-                </div>
-                <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 py-12 sm:grid-cols-2 md:grid-cols-3 lg:gap-10">
-                    <div className="flex flex-col items-start rounded-lg border border-gray-200 bg-white p-6 shadow-sm transition-colors hover:border-gray-300"
-                        style={{
-                            background:
-                                "linear-gradient(143.6deg, rgba(192, 132, 252, 0) 20.79%, rgba(232, 121, 249, 0.26) 40.92%, rgba(204, 171, 238, 0) 70.35%)",
-                        }}
-                    >
-                        <TrophyIcon className="mb-4 h-8 w-8 text-gray-900" />
-                        <div className="space-y-2">
-                            <h3 className="text-lg font-semibold">Hexaware Learning Ambassador</h3>
-                            <p className="text-sm text-gray-500">
-                                Recognized as a <b><i>Knowledge Ninja</i></b> and awarded the Learning Award for <b><i>Q4 2023 at Hexaware</i></b>, demonstrating a strong commitment to continuous learning and skill enhancement.
-                            </p>
-                            <img
-                                alt="Certificate"
-                                className="rounded-lg hover:scale-125 transition-transform hover:translate-x-2"
-                                height={150}
-                                src={award}
-                                style={{
-                                    aspectRatio: "200/150",
-                                    objectFit: "cover",
-                                }}
-                                width={200}
-                                draggable="false"
-                            />
+        <section className="py-16">
+            <div className="container mx-auto px-4">
+            <header className="space-y-1 text-center">
+                    <h1 className="text-gray-600 dark:text-gray-400 text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl pb-4">Achievements</h1>
+                </header>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    {achievements.map((achievement, index) => (
+                        <div key={index} className={`bg-gradient-to-br ${achievement.gradient} rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl`}>
+                            <div className="p-6">
+                                <div className="flex items-center mb-4">
+                                    {achievement.icon}
+                                    <h3 className="text-xl font-semibold ml-3">{achievement.title}</h3>
+                                </div>
+                                <p className="text-gray-700 mb-4">{achievement.description}</p>
+                                {achievement.image && (
+                                    <div className="mt-4 h-68 overflow-hidden rounded-lg">
+                                        <img
+                                            src={achievement.image}
+                                            alt={achievement.title}
+                                            className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                                        />
+                                    </div>
+                                )}
+                            </div>
                         </div>
-
-                    </div>
-                    <div className="flex flex-col items-start rounded-lg border border-gray-200 bg-white p-6 shadow-sm transition-colors hover:border-gray-300"
-                        style={{ background: "linear-gradient(143.6deg, rgba(255, 223, 128, 0) 20.79%, rgba(255, 215, 0, 0.5) 40.92%, rgba(255, 223, 128, 0) 70.35%)" }}>
-                        <AwardIcon className="mb-4 h-8 w-8 text-gray-900" />
-                        <div className="space-y-2">
-                            <h3 className="text-lg font-semibold">Designathon 2023</h3>
-                            <p className="text-sm text-gray-500">
-                                Secured the second position in the Designathon event hosted by <b><i>Hexaware</i></b> in 2023, where I excelled in designing the functional <b><i>UI</i></b> for the <b><i>Performance Management System</i></b>, earning the Runner Award.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div className="flex flex-col items-start rounded-lg border border-gray-200 bg-white p-6 shadow-sm transition-colors hover:border-gray-300"
-                        style={{
-                            background:
-                                "linear-gradient(143.6deg, rgba(192, 132, 252, 0) 20.79%, rgba(232, 121, 249, 0.26) 40.92%, rgba(204, 171, 238, 0) 70.35%)",
-                        }}>
-                        <SparklesIcon className="mb-4 h-8 w-8 text-gray-900" />
-                        <div className="space-y-2">
-                            <h3 className="text-lg font-semibold">CodeRush - 2024</h3>
-                            <p className="text-sm text-gray-500">
-                                Achieved the <b><i>3rd prize</i></b> at CodeRush – 2024, a prestigious two-day coding sprint focused on <b><i>Natural Language Processing (NLP)</i></b>, showcasing proficiency and innovation in software development, organized by Hexaware.
-                            </p>
-                            <img
-                                alt="Certificate"
-                                className="rounded-lg hover:scale-125 transition-transform hover:translate-x-2"
-                                height={150}
-                                src={codeRush}
-                                style={{
-                                    aspectRatio: "200/150",
-                                    objectFit: "cover",
-                                }}
-                                width={200}
-                                draggable="false"
-                            />
-                        </div>
-                    </div>
-
-                    <div className="flex flex-col items-start rounded-lg border border-gray-200 bg-white p-6 shadow-sm transition-colors hover:border-gray-300"
-                        style={{
-                            background: "linear-gradient(143.6deg, rgba(255, 223, 128, 0) 20.79%, rgba(255, 215, 0, 0.5) 40.92%, rgba(255, 223, 128, 0) 70.35%)"
-                        }}
-                    >
-                        <StarIcon className="mb-4 h-8 w-8 text-gray-900" />
-                        <div className="space-y-2">
-                            <h3 className="text-lg font-semibold">Maverick Designathon - 2024</h3>
-                            <p className="text-sm text-gray-500">
-                            Won the Maverick <b><i>Gen AI</i></b> Designathon <b><i>2024</i></b>, organized by Hexaware Technologies, with the innovative 'AI Powered Panel Slot Allocation' application, showcasing exceptional AI and software development skills.
-                            </p>
-                            <img
-                                alt="Certificate"
-                                className="rounded-lg hover:scale-125 transition-transform hover:translate-x-2"
-                                height={150}
-                                src={designathon2024}
-                                style={{
-                                    aspectRatio: "200/150",
-                                    objectFit: "cover",
-                                }}
-                                width={200}
-                                draggable="false"
-                            />
-                        </div>
-                    </div>
-
+                    ))}
                 </div>
             </div>
         </section>
-    )
+    );
 }
 
 function AwardIcon(props) {
@@ -134,7 +87,6 @@ function AwardIcon(props) {
     )
 }
 
-
 function BadgeIcon(props) {
     return (
         <svg
@@ -153,7 +105,6 @@ function BadgeIcon(props) {
         </svg>
     )
 }
-
 
 function SparklesIcon(props) {
     return (
@@ -177,7 +128,6 @@ function SparklesIcon(props) {
         </svg>
     )
 }
-
 
 function TrophyIcon(props) {
     return (
