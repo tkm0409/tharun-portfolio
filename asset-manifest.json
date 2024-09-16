@@ -1,20 +1,29 @@
 {
   "files": {
-    "main.css": "/tharun-portfolio/static/css/main.a81671a2.css",
-    "main.js": "/tharun-portfolio/static/js/main.5b3e31a4.js",
-    "static/js/453.815cb98b.chunk.js": "/tharun-portfolio/static/js/453.815cb98b.chunk.js",
+    "main.css": "/tharun-portfolio/static/css/main.071a7e38.css",
+    "main.js": "/tharun-portfolio/static/js/main.4f4831ec.js",
+    "static/js/453.96003381.chunk.js": "/tharun-portfolio/static/js/453.96003381.chunk.js",
+    "static/media/THARUN KUMAR MADDALA - RPA Developer.pdf": "/tharun-portfolio/static/media/THARUN KUMAR MADDALA - RPA Developer.7d75a6bd889c7f4125ca.pdf",
     "static/media/cutout1.png": "/tharun-portfolio/static/media/cutout1.d060ca2d17a2326c3599.png",
     "static/media/codeRush.jpg": "/tharun-portfolio/static/media/codeRush.69320694a307477ca520.jpg",
     "static/media/Award.png": "/tharun-portfolio/static/media/Award.2b3f22077c5f2190c83c.png",
-    "static/media/Designathon2024.jpg": "/tharun-portfolio/static/media/Designathon2024.5ac86c63d9dd038db88d.jpg",
+    "static/media/CHAMPIONS.jpeg": "/tharun-portfolio/static/media/CHAMPIONS.c88def704a8def86bac8.jpeg",
+    "static/media/CERTIFICATE OF ACHIEVEMENT.jpeg": "/tharun-portfolio/static/media/CERTIFICATE OF ACHIEVEMENT.0cfc5d84793e9e1340f9.jpeg",
+    "static/media/WINNERS.jpeg": "/tharun-portfolio/static/media/WINNERS.66b7db7e90fd468fd59e.jpeg",
+    "static/media/GENAI DESIGNATHON 2024.jpeg": "/tharun-portfolio/static/media/GENAI DESIGNATHON 2024.40fa538abe71e61724b6.jpeg",
+    "static/media/WINNING DAY.jpeg": "/tharun-portfolio/static/media/WINNING DAY.731718800ced87c9dfe8.jpeg",
+    "static/media/HEXAWARE CEO, LEADERS.jpeg": "/tharun-portfolio/static/media/HEXAWARE CEO, LEADERS.462ba716f464abde6fa7.jpeg",
+    "static/media/KNOWLEDGE NINJA.jpeg": "/tharun-portfolio/static/media/KNOWLEDGE NINJA.72a4a35b37f4114dcf2f.jpeg",
+    "static/media/DESIGNATHON.jpeg": "/tharun-portfolio/static/media/DESIGNATHON.ab1808c23ad91b193a88.jpeg",
+    "static/media/CODERUSH-2024.jpeg": "/tharun-portfolio/static/media/CODERUSH-2024.62f02e08f62112d7ecba.jpeg",
     "static/media/logo.png": "/tharun-portfolio/static/media/logo.3980b31df69f27ae2237.png",
     "index.html": "/tharun-portfolio/index.html",
-    "main.a81671a2.css.map": "/tharun-portfolio/static/css/main.a81671a2.css.map",
-    "main.5b3e31a4.js.map": "/tharun-portfolio/static/js/main.5b3e31a4.js.map",
-    "453.815cb98b.chunk.js.map": "/tharun-portfolio/static/js/453.815cb98b.chunk.js.map"
+    "main.071a7e38.css.map": "/tharun-portfolio/static/css/main.071a7e38.css.map",
+    "main.4f4831ec.js.map": "/tharun-portfolio/static/js/main.4f4831ec.js.map",
+    "453.96003381.chunk.js.map": "/tharun-portfolio/static/js/453.96003381.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.a81671a2.css",
-    "static/js/main.5b3e31a4.js"
+    "static/css/main.071a7e38.css",
+    "static/js/main.4f4831ec.js"
   ]
 }
