@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/tharun-portfolio/static/css/main.071a7e38.css",
-    "main.js": "/tharun-portfolio/static/js/main.4f4831ec.js",
+    "main.css": "/tharun-portfolio/static/css/main.4258aecf.css",
+    "main.js": "/tharun-portfolio/static/js/main.9dd281d3.js",
     "static/js/453.96003381.chunk.js": "/tharun-portfolio/static/js/453.96003381.chunk.js",
     "static/media/THARUN KUMAR MADDALA - RPA Developer.pdf": "/tharun-portfolio/static/media/THARUN KUMAR MADDALA - RPA Developer.7d75a6bd889c7f4125ca.pdf",
     "static/media/cutout1.png": "/tharun-portfolio/static/media/cutout1.d060ca2d17a2326c3599.png",
@@ -18,12 +18,12 @@
     "static/media/CODERUSH-2024.jpeg": "/tharun-portfolio/static/media/CODERUSH-2024.62f02e08f62112d7ecba.jpeg",
     "static/media/logo.png": "/tharun-portfolio/static/media/logo.3980b31df69f27ae2237.png",
     "index.html": "/tharun-portfolio/index.html",
-    "main.071a7e38.css.map": "/tharun-portfolio/static/css/main.071a7e38.css.map",
-    "main.4f4831ec.js.map": "/tharun-portfolio/static/js/main.4f4831ec.js.map",
+    "main.4258aecf.css.map": "/tharun-portfolio/static/css/main.4258aecf.css.map",
+    "main.9dd281d3.js.map": "/tharun-portfolio/static/js/main.9dd281d3.js.map",
     "453.96003381.chunk.js.map": "/tharun-portfolio/static/js/453.96003381.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.071a7e38.css",
-    "static/js/main.4f4831ec.js"
+    "static/css/main.4258aecf.css",
+    "static/js/main.9dd281d3.js"
   ]
 }
