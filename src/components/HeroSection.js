@@ -8,6 +8,7 @@ import { Document, Page, pdfjs } from 'react-pdf';
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import 'react-pdf/dist/esm/Page/TextLayer.css';
 import resumePdf from '../assets/THARUN KUMAR MADDALA - RPA Developer.pdf';
+import ScrollAwareNav from './ScrollAwareNav';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 
@@ -112,53 +113,7 @@ export default () => {
                         "linear-gradient(143.6deg, rgba(192, 132, 252, 0) 20.79%, rgba(232, 121, 249, 0.26) 40.92%, rgba(204, 171, 238, 0) 70.35%)",
                 }}
             ></div>
-            <header className="relative z-10">
-                <div className={`md:hidden ${state ? "mx-2 pb-5" : "hidden"}`}>
-                    <Brand />
-                </div>
-                <nav
-                    className={`pb-5 md:text-sm ${state
-                        ? "absolute top-0 inset-x-0 bg-white shadow-lg rounded-xl border mx-2 mt-2 md:shadow-none md:border-none md:mx-0 md:mt-0 md:relative md:bg-transparent z-10"
-                        : ""
-                        }`}
-                >
-                    <div className="gap-x-14 items-center max-w-screen-xl mx-auto px-4 md:flex md:px-8">
-                        <Brand />
-                        <div
-                            className={`flex-1 items-center mt-8 md:mt-0 md:flex ${state ? "block" : "hidden"
-                                } `}
-                        >
-                            <ul className="flex-1 justify-center items-center space-y-6 md:flex md:space-x-6 md:space-y-0">
-                                {navigation.map((item, idx) => {
-                                    return (
-                                        <li
-                                            key={idx}
-                                            className="text-gray-700 hover:text-blue-600"
-                                        >
-                                            <Link
-                                                to={item.path}
-                                                className="block text-lg font-bold"
-                                                style={{ cursor: 'pointer' }}
-                                            >
-                                                {item.title}
-                                            </Link>
-                                        </li>
-                                    );
-                                })}
-                            </ul>
-                            {/* <div className="py-2 px-5 rounded-lg font-medium text-white text-center bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700 duration-150 block mt-4 md:mt-0 md:py-3 md:px-6 md:inline">
-                                <a
-                                    href="https://drive.google.com/file/d/149CLa1y8IXfUwpKUGM7Fl0XniY1fqX7z/view"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                >
-                                    View Resume
-                                </a>
-                            </div> */}
-                        </div>
-                    </div>
-                </nav>
-            </header>
+            <ScrollAwareNav />
             <section className="py-12 md:py-20">
                 <div className="max-w-screen-xl mx-auto text-gray-600 gap-x-12 items-center justify-between overflow-hidden md:flex md:px-8">
                     <motion.div 
@@ -235,18 +190,20 @@ export default () => {
                         )}
                     </motion.div>
                     <motion.div 
-                        className="flex-1 mt-12 md:mt-0 md:block"
+                        className="flex-1 mt-12 md:mt-0 hidden md:block"
                         initial={{ opacity: 0, scale: 0.8 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.8 }}
                     >
-                        <img
-                            src={cutout}
-                            className="w-full max-w-xl mx-auto drop-shadow-2xl"
-                            alt="Tharun Kumar"
-                            draggable="false"
-                            onContextMenu={preventContextMenu}
-                        />
+                        <div className="relative w-full max-w-xl mx-auto perspective-1000">
+                            <img
+                                src={cutout}
+                                className="w-full cutout-3d"
+                                alt="Tharun Kumar"
+                                draggable="false"
+                                onContextMenu={preventContextMenu}
+                            />
+                        </div>
                     </motion.div>
                 </div>
             </section>
