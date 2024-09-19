@@ -6,9 +6,9 @@ import ParticleBackground from './ParticleBackground';
 export default function Skills() {
     return (
         <section id="skills" className="w-full py-16 md:py-24 lg:py-32 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 relative">
-            <Canvas style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}>
+            {/* <Canvas style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}>
                 <ParticleBackground />
-            </Canvas>
+            </Canvas> */}
             <div className="container px-4 md:px-6 mx-auto space-y-12 relative z-10">
                 <motion.div 
                     className="text-center"
