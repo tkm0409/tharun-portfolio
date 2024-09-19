@@ -1,12 +1,14 @@
 {
   "files": {
-    "main.css": "/tharun-portfolio/static/css/main.4258aecf.css",
-    "main.js": "/tharun-portfolio/static/js/main.5125963b.js",
+    "main.css": "/tharun-portfolio/static/css/main.5d1096d6.css",
+    "main.js": "/tharun-portfolio/static/js/main.a7c992e9.js",
     "static/js/453.96003381.chunk.js": "/tharun-portfolio/static/js/453.96003381.chunk.js",
     "static/media/THARUN KUMAR MADDALA - RPA Developer.pdf": "/tharun-portfolio/static/media/THARUN KUMAR MADDALA - RPA Developer.eb2bf7d7f32dbe23640d.pdf",
+    "static/media/Algomaniac2024.jpg": "/tharun-portfolio/static/media/Algomaniac2024.57f635667914f6bb124b.jpg",
     "static/media/cutout1.png": "/tharun-portfolio/static/media/cutout1.d060ca2d17a2326c3599.png",
     "static/media/codeRush.jpg": "/tharun-portfolio/static/media/codeRush.69320694a307477ca520.jpg",
     "static/media/Award.png": "/tharun-portfolio/static/media/Award.2b3f22077c5f2190c83c.png",
+    "static/media/Designathon2023.jpg": "/tharun-portfolio/static/media/Designathon2023.3a1011f8cc274c70516b.jpg",
     "static/media/CHAMPIONS.jpeg": "/tharun-portfolio/static/media/CHAMPIONS.c88def704a8def86bac8.jpeg",
     "static/media/CERTIFICATE OF ACHIEVEMENT.jpeg": "/tharun-portfolio/static/media/CERTIFICATE OF ACHIEVEMENT.0cfc5d84793e9e1340f9.jpeg",
     "static/media/WINNERS.jpeg": "/tharun-portfolio/static/media/WINNERS.66b7db7e90fd468fd59e.jpeg",
@@ -18,12 +20,12 @@
     "static/media/CODERUSH-2024.jpeg": "/tharun-portfolio/static/media/CODERUSH-2024.62f02e08f62112d7ecba.jpeg",
     "static/media/logo.png": "/tharun-portfolio/static/media/logo.3980b31df69f27ae2237.png",
     "index.html": "/tharun-portfolio/index.html",
-    "main.4258aecf.css.map": "/tharun-portfolio/static/css/main.4258aecf.css.map",
-    "main.5125963b.js.map": "/tharun-portfolio/static/js/main.5125963b.js.map",
+    "main.5d1096d6.css.map": "/tharun-portfolio/static/css/main.5d1096d6.css.map",
+    "main.a7c992e9.js.map": "/tharun-portfolio/static/js/main.a7c992e9.js.map",
     "453.96003381.chunk.js.map": "/tharun-portfolio/static/js/453.96003381.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.4258aecf.css",
-    "static/js/main.5125963b.js"
+    "static/css/main.5d1096d6.css",
+    "static/js/main.a7c992e9.js"
   ]
 }
