@@ -44,7 +44,7 @@ export default () => {
     }, []);
 
     const words =
-        "Harnessing over 2 years of hands-on experience, I specialize in sculpting dynamic, user-centric solutions as a seasoned .NET Full Stack Developer and RPA expert. My passion lies in crafting top-tier code and orchestrating flawless user journeys. Proficient across a spectrum of technologies including .NET, C#, ASP.NET, JavaScript, React, SQL Server, and Automation Anywhere, I am adept at integrating applications like ServiceNow, Salesforce, DocuSign, and Jira. Let's ignite innovation together and breathe life into your visionary concepts!";
+        "Harnessing over 2 years of hands-on experience, I specialize in sculpting dynamic, user-centric solutions as a seasoned .NET & Python Full Stack Developer and RPA expert. My passion lies in crafting top-tier code and orchestrating flawless user journeys. Proficient across a spectrum of technologies including Java, Python, C#, ASP.NET, JavaScript, React, Angular, SQL Server, and Automation Anywhere, I am adept at integrating applications like ServiceNow, Salesforce, DocuSign, and Jira. Let's ignite innovation together and breathe life into your visionary concepts!";
 
     const Brand = () => (
         <div className="flex items-center justify-between py-5 md:block">
@@ -129,7 +129,7 @@ export default () => {
                                     </span>
                                 </h1>
                                 <p className="text-2xl md:text-3xl font-semibold text-indigo-600 mb-8">
-                                    .NET Full Stack Developer & RPA Expert
+                                    Full Stack Developer & RPA Expert
                                 </p>
                             </>
                         )}

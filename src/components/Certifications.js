@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import "./certificationModal.css";
+import automationAnywhereLogo from "../assets/automation-anywhere-icon.png";
+import microsoftLogo from "../assets/microsoft.png";
+import awsLogo from "../assets/web.png";
 
 function Certifications() {
     const [modalOpen, setModalOpen] = useState(false);
@@ -30,6 +33,13 @@ function Certifications() {
         setModalOpen(false);
     };
 
+    const getCertificationLogo = (name) => {
+        if (name.includes("Automation Anywhere")) return automationAnywhereLogo;
+        if (name.includes("Microsoft")) return microsoftLogo;
+        if (name.includes("AWS")) return awsLogo;
+        return null;
+    };
+
     return (
         <section className="bg-gray-50 dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
             <div className="max-w-7xl mx-auto">
@@ -45,7 +55,14 @@ function Certifications() {
                     {certifications.map((certification, index) => (
                         <div key={index} className="bg-white dark:bg-gray-800 overflow-hidden shadow-lg rounded-lg">
                             <div className="p-6">
-                                <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">{certification.name}</h3>
+                                <div className="flex items-center mb-4">
+                                    <img 
+                                        src={getCertificationLogo(certification.name)} 
+                                        alt={`${certification.name} logo`}
+                                        className="w-12 h-12 object-contain mr-4"
+                                    />
+                                    <h3 className="text-lg font-medium text-gray-900 dark:text-white">{certification.name}</h3>
+                                </div>
                                 <a href={certification.link} className="text-sm text-blue-600 dark:text-blue-400 hover:underline" target="_blank" rel="noopener noreferrer">
                                     Verify Certificate
                                 </a>
