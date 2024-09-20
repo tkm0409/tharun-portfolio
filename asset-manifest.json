@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/tharun-portfolio/static/css/main.5d1096d6.css",
-    "main.js": "/tharun-portfolio/static/js/main.e79e20fa.js",
+    "main.css": "/tharun-portfolio/static/css/main.df9cc6e7.css",
+    "main.js": "/tharun-portfolio/static/js/main.d61179b8.js",
     "static/js/453.96003381.chunk.js": "/tharun-portfolio/static/js/453.96003381.chunk.js",
     "static/media/THARUN KUMAR MADDALA - RPA Developer.pdf": "/tharun-portfolio/static/media/THARUN KUMAR MADDALA - RPA Developer.eb2bf7d7f32dbe23640d.pdf",
     "static/media/Algomaniac2024.jpg": "/tharun-portfolio/static/media/Algomaniac2024.57f635667914f6bb124b.jpg",
@@ -15,17 +15,18 @@
     "static/media/GENAI DESIGNATHON 2024.jpeg": "/tharun-portfolio/static/media/GENAI DESIGNATHON 2024.40fa538abe71e61724b6.jpeg",
     "static/media/WINNING DAY.jpeg": "/tharun-portfolio/static/media/WINNING DAY.731718800ced87c9dfe8.jpeg",
     "static/media/HEXAWARE CEO, LEADERS.jpeg": "/tharun-portfolio/static/media/HEXAWARE CEO, LEADERS.462ba716f464abde6fa7.jpeg",
-    "static/media/KNOWLEDGE NINJA.jpeg": "/tharun-portfolio/static/media/KNOWLEDGE NINJA.72a4a35b37f4114dcf2f.jpeg",
     "static/media/DESIGNATHON.jpeg": "/tharun-portfolio/static/media/DESIGNATHON.ab1808c23ad91b193a88.jpeg",
     "static/media/CODERUSH-2024.jpeg": "/tharun-portfolio/static/media/CODERUSH-2024.62f02e08f62112d7ecba.jpeg",
+    "static/media/automation-anywhere-icon.png": "/tharun-portfolio/static/media/automation-anywhere-icon.5be5052b42497da1b338.png",
     "static/media/logo.png": "/tharun-portfolio/static/media/logo.3980b31df69f27ae2237.png",
+    "static/media/web.png": "/tharun-portfolio/static/media/web.dc407c532bab5d443ddc.png",
     "index.html": "/tharun-portfolio/index.html",
-    "main.5d1096d6.css.map": "/tharun-portfolio/static/css/main.5d1096d6.css.map",
-    "main.e79e20fa.js.map": "/tharun-portfolio/static/js/main.e79e20fa.js.map",
+    "main.df9cc6e7.css.map": "/tharun-portfolio/static/css/main.df9cc6e7.css.map",
+    "main.d61179b8.js.map": "/tharun-portfolio/static/js/main.d61179b8.js.map",
     "453.96003381.chunk.js.map": "/tharun-portfolio/static/js/453.96003381.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.5d1096d6.css",
-    "static/js/main.e79e20fa.js"
+    "static/css/main.df9cc6e7.css",
+    "static/js/main.d61179b8.js"
   ]
 }
