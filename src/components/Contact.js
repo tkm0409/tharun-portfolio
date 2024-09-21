@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-export default () => {
+export default ({ isDarkMode }) => {
     const [phoneNumber, setPhoneNumber] = useState('');
     const [message, setMessage] = useState('');
+
 
     const contactMethods = [
         {
@@ -23,15 +24,14 @@ export default () => {
     };
 
     return (
-        <main>
-            <div className="max-w-screen-xl mx-auto px-4 text-gray-600 md:px-8">
+        <main className={`${isDarkMode ? 'bg-gray-900 text-gray-100' : 'bg-white text-gray-600'}`}>
+            <div className="max-w-screen-xl mx-auto px-4 md:px-8">
                 <div className="max-w-xl space-y-3">
                     <h3 className="text-indigo-600 font-semibold">
                         Contact
                     </h3>
-                    
-                    <p>
-                        I'm here to help and answer any question you might have, I look forward to hearing from you .
+                    <p className={isDarkMode ? 'text-gray-300' : 'text-gray-600'}>
+                        I'm here to help and answer any question you might have, I look forward to hearing from you.
                     </p>
                 </div>
                 <div>
@@ -39,12 +39,12 @@ export default () => {
                         {
                             contactMethods.map((item, idx) => (
                                 <li key={idx}>
-                                    <h4 className="text-gray-800 text-lg font-medium">{item.title}</h4>
+                                    <h4 className={`${isDarkMode ? 'text-gray-100' : 'text-gray-800'} text-lg font-medium`}>{item.title}</h4>
                                     <div className="mt-3 flex items-center gap-x-3">
-                                        <div className="flex-none text-gray-400">
+                                        <div className={`flex-none ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
                                             {item.icon}
                                         </div>
-                                        <a href={`mailto:${item.contact}`}>{item.contact}</a>
+                                        <a href={`mailto:${item.contact}`} className={isDarkMode ? 'text-gray-300 hover:text-gray-100' : 'text-gray-600 hover:text-gray-800'}>{item.contact}</a>
                                     </div>
                                 </li>
                             ))
@@ -54,14 +54,18 @@ export default () => {
                 
                 {/* WhatsApp Contact Form */}
                 <div className="mt-12">
-                    <h4 className="text-gray-800 text-lg font-medium mb-4">Contact via WhatsApp</h4>
+                    <h4 className={`${isDarkMode ? 'text-gray-100' : 'text-gray-800'} text-lg font-medium mb-4`}>Contact via WhatsApp</h4>
                     <form onSubmit={handleSubmit} className="space-y-4">
                         <div>
-                            <label htmlFor="message" className="block text-sm font-medium text-gray-700">Message</label>
+                            <label htmlFor="message" className={`block text-sm font-medium ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>Message</label>
                             <textarea
                                 id="message"
                                 rows="4"
-                                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+                                className={`mt-1 block w-full rounded-md shadow-sm p-2 ${
+                                    isDarkMode 
+                                        ? 'bg-gray-800 border-gray-700 text-gray-100' 
+                                        : 'bg-white border-gray-300 text-gray-900'
+                                }`}
                                 value={message}
                                 onChange={(e) => setMessage(e.target.value)}
                                 required

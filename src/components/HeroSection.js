@@ -104,7 +104,7 @@ export default () => {
     };
 
     return (
-        <div className="relative bg-gradient-to-b from-gray-50 to-white">
+        <div className="relative bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
             <div
                 className={`absolute inset-0 blur-xl h-[580px] pointer-events-none z-0 ${state ? "hidden" : ""
                     }`}
@@ -115,31 +115,31 @@ export default () => {
             ></div>
             <ScrollAwareNav />
             <section className="py-12 md:py-20">
-                <div className="max-w-screen-xl mx-auto text-gray-600 gap-x-12 items-center justify-between overflow-hidden md:flex md:px-8">
+                <div className="max-w-screen-xl mx-auto text-gray-600 dark:text-gray-300 gap-x-12 items-center justify-between overflow-hidden md:flex md:px-8">
                     <motion.div 
                         className="flex-none space-y-5 px-4 sm:max-w-lg md:px-0 lg:max-w-xl"
                         {...fadeInUp}
                     >
                         {!state && (
                             <>
-                                <h1 className="text-5xl md:text-6xl font-extrabold mb-4 text-gray-900">
+                                <h1 className="text-5xl md:text-6xl font-extrabold mb-4 text-gray-900 dark:text-white">
                                     <span>Hi! I'm </span>
                                     <span className="bg-gradient-to-r from-blue-600 to-indigo-600 text-transparent bg-clip-text">
                                         Tharun Kumar
                                     </span>
                                 </h1>
-                                <p className="text-2xl md:text-3xl font-semibold text-indigo-600 mb-8">
+                                <p className="text-2xl md:text-3xl font-semibold text-indigo-600 dark:text-indigo-400 mb-8">
                                     Full Stack Developer & RPA Expert
                                 </p>
                             </>
                         )}
-                        <p className="text-lg text-gray-700 leading-relaxed mb-8 font-serif text-justify">
+                        <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-8 font-serif text-justify">
                             <TextGenerateEffect words={words} />
                         </p>
                         <div className="flex space-x-4">
                             <button
                                 onClick={togglePdfViewer}
-                                className="px-6 py-3 text-white font-semibold bg-indigo-600 hover:bg-indigo-700 rounded-lg transition duration-300"
+                                className="px-6 py-3 text-white font-semibold bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 rounded-lg transition duration-300"
                             >
                                 View Resume
                             </button>
@@ -147,7 +147,7 @@ export default () => {
                                 to="contact"
                                 smooth={true}
                                 duration={500}
-                                className="px-6 py-3 text-indigo-600 font-semibold border border-indigo-600 hover:bg-indigo-50 rounded-lg transition duration-300 cursor-pointer"
+                                className="px-6 py-3 text-indigo-600 dark:text-indigo-400 font-semibold border border-indigo-600 dark:border-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-900 rounded-lg transition duration-300 cursor-pointer"
                             >
                                 Contact Me
                             </Link>

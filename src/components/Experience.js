@@ -23,9 +23,9 @@ export default function Experience() {
     ];
 
     return (
-        <div className="bg-gray-50 py-16">
+        <div className="bg-gray-50 dark:bg-gray-800 py-16">
             <div className="container mx-auto px-4">
-                <h2 className="text-3xl font-bold text-center text-gray-800 mb-12">Professional Experience</h2>
+                <h2 className="text-3xl font-bold text-center text-gray-800 dark:text-gray-200 mb-12">Professional Experience</h2>
                 <div className="space-y-12">
                     {experiences.map((exp, index) => (
                         <motion.div
@@ -33,17 +33,17 @@ export default function Experience() {
                             initial={{ opacity: 0, y: 50 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: index * 0.2 }}
-                            className="bg-white rounded-lg shadow-lg p-6 transition-all duration-300 hover:shadow-xl"
+                            className="bg-white dark:bg-gray-700 rounded-lg shadow-lg p-6 transition-all duration-300 hover:shadow-xl"
                         >
                             <div className="flex items-center mb-4">
                                 {exp.icon}
-                                <h3 className="text-xl font-semibold text-gray-800 ml-3">{exp.title}</h3>
+                                <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-200 ml-3">{exp.title}</h3>
                             </div>
-                            <p className="text-gray-600 mb-2">{exp.company} | {exp.period}</p>
-                            <p className="text-gray-700 mb-4">{exp.description}</p>
+                            <p className="text-gray-600 dark:text-gray-400 mb-2">{exp.company} | {exp.period}</p>
+                            <p className="text-gray-700 dark:text-gray-300 mb-4">{exp.description}</p>
                             <div className="flex flex-wrap gap-2">
                                 {exp.skills.map((skill, skillIndex) => (
-                                    <span key={skillIndex} className="bg-blue-100 text-blue-800 text-sm font-medium px-2.5 py-0.5 rounded">
+                                    <span key={skillIndex} className="bg-blue-100 dark:bg-blue-800 text-blue-800 dark:text-blue-100 text-sm font-medium px-2.5 py-0.5 rounded">
                                         {skill}
                                     </span>
                                 ))}
