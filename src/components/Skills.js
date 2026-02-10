@@ -1,30 +1,25 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Canvas } from '@react-three/fiber';
-import ParticleBackground from './ParticleBackground';
 
 export default function Skills() {
     return (
-        <section id="skills" className="w-full py-16 md:py-24 lg:py-32 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 relative">
-            {/* <Canvas style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}>
-                <ParticleBackground />
-            </Canvas> */}
+        <section id="skills" className="w-full py-20 md:py-28 bg-gradient-to-b from-white via-primary-50/20 to-gray-50 dark:from-gray-800 dark:via-gray-900 dark:to-gray-900 relative">
             <div className="container px-4 md:px-6 mx-auto space-y-12 relative z-10">
-                <motion.div 
+                <motion.div
                     className="text-center"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
                 >
-                    <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl md:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-teal-400">
+                    <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl md:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-accent-500">
                         Skills & Expertise
                     </h2>
-                    <p className="mt-4 mx-auto max-w-2xl text-xl text-gray-600 dark:text-gray-300">
+                    <p className="mt-4 mx-auto max-w-2xl text-lg text-gray-600 dark:text-gray-300">
                         With a diverse skill set spanning web development, Microsoft technologies, and RPA, I bring a comprehensive approach to solving complex technical challenges.
                     </p>
                 </motion.div>
 
-                <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                     {skillsData.map((skill, index) => (
                         <SkillCard key={index} {...skill} />
                     ))}
@@ -36,17 +31,19 @@ export default function Skills() {
 
 function SkillCard({ icon: Icon, title, description, color }) {
     return (
-        <motion.div 
-            className="rounded-xl shadow-lg overflow-hidden bg-white dark:bg-gray-800 transition-all duration-300 hover:shadow-xl"
-            whileHover={{ scale: 1.05 }}
+        <motion.div
+            className="rounded-2xl overflow-hidden bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 transition-all duration-300 hover:shadow-xl hover:shadow-primary-500/10 hover:border-primary-300/50 dark:hover:border-primary-600/50"
+            whileHover={{ scale: 1.03, y: -4 }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
         >
             <div className="p-6 space-y-4">
-                <Icon className="w-12 h-12" style={{ color }} />
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary-50 to-accent-500/10 dark:from-primary-900/30 dark:to-accent-500/10 flex items-center justify-center">
+                    <Icon className="w-7 h-7" style={{ color }} />
+                </div>
                 <h3 className="text-xl font-semibold text-gray-800 dark:text-white">{title}</h3>
-                <p className="text-gray-600 dark:text-gray-300">{description}</p>
+                <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">{description}</p>
             </div>
         </motion.div>
     );
@@ -62,19 +59,19 @@ const skillsData = [
     {
         icon: ServerIcon,
         title: "Back-end Development",
-        description: "Experienced in building robust server-side applications using C# and ASP.NET Core. Familiar with Java and Python for versatile back-end solutions.",
+        description: "Experienced in building robust server-side applications using C#, ASP.NET Core, and Python. Skilled with Spring Boot for Java-based solutions and proficient in designing scalable APIs and microservices.",
         color: "#4169E1"
     },
     {
         icon: DatabaseIcon,
         title: "Database Management",
-        description: "Skilled in designing and optimizing database structures using SQL Server and Azure SQL. Experience with NoSQL databases like CosmosDB for scalable data solutions.",
+        description: "Skilled in designing and optimizing database structures using SQL Server, MySQL, and PostgreSQL. Experience with NoSQL databases like CosmosDB for scalable data solutions.",
         color: "#8A2BE2"
     },
     {
         icon: CloudIcon,
         title: "Cloud & DevOps",
-        description: "Proficient in deploying and managing applications on Azure cloud platform. Experienced with Azure DevOps for CI/CD pipelines and Docker for containerization.",
+        description: "Proficient in deploying and managing applications on Azure and AWS cloud platforms. Experienced with CI/CD pipelines, Docker for containerization, and cloud-native architectures.",
         color: "#87CEEB"
     },
     {
@@ -86,8 +83,14 @@ const skillsData = [
     {
         icon: ToolsIcon,
         title: "Tools & Frameworks",
-        description: "Proficient in .NET ecosystem, including Entity Framework for ORM and LINQ for data querying. Experience with Xamarin for cross-platform mobile development.",
+        description: "Proficient in .NET ecosystem including Entity Framework and LINQ. Experienced with Git, GitHub, VS Code, and ServiceNow for collaborative development and service management.",
         color: "#32CD32"
+    },
+    {
+        icon: AIIcon,
+        title: "AI & GenAI",
+        description: "Experienced with Generative AI technologies including OpenAI Agents SDK, LangChain, LLM integration, vector databases, and MCP. Building agentic AI solutions for enterprise process automation.",
+        color: "#f093fb"
     }
 ];
 
@@ -129,28 +132,6 @@ function DatabaseIcon(props) {
             <ellipse cx="12" cy="5" rx="9" ry="3" />
             <path d="M3 5V19A9 3 0 0 0 21 19V5" />
             <path d="M3 12A9 3 0 0 0 21 12" />
-        </svg>
-    )
-}
-
-
-function MenuIcon(props) {
-    return (
-        <svg
-            {...props}
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-        >
-            <line x1="4" x2="20" y1="12" y2="12" />
-            <line x1="4" x2="20" y1="6" y2="6" />
-            <line x1="4" x2="20" y1="18" y2="18" />
         </svg>
     )
 }
@@ -242,6 +223,32 @@ function ToolsIcon(props) {
             <path d="M13.5 5.5 18 2l4 4-3.5 3.5" />
             <path d="M16 10c-1.7 1.7-3.3 3.3-5 5" />
             <path d="M8 16c1.7-1.7 3.3-3.3 5-5" />
+        </svg>
+    )
+}
+
+function AIIcon(props) {
+    return (
+        <svg
+            {...props}
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+        >
+            <path d="M12 2a4 4 0 0 1 4 4v1a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1V6a4 4 0 0 1 4-4z" />
+            <path d="M9 8v2" />
+            <path d="M15 8v2" />
+            <path d="M12 8v8" />
+            <path d="M8 14h8" />
+            <path d="M7 18l-2 4" />
+            <path d="M17 18l2 4" />
+            <path d="M12 18v4" />
         </svg>
     )
 }

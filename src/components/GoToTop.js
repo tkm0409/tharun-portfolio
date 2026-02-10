@@ -10,24 +10,9 @@ const GoToTop = () => {
   return (
     <div
       onClick={scrollToTop}
-      style={{
-        position: 'fixed',
-        bottom: '20px',
-        right: '20px',
-        cursor: 'pointer',
-        backgroundColor: '#007bff',
-        color: 'white',
-        borderRadius: '50%',
-        width: '40px',
-        height: '40px',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        boxShadow: '0 2px 5px rgba(0,0,0,0.3)',
-        zIndex: 1000,
-      }}
+      className="fixed bottom-5 right-5 cursor-pointer bg-gradient-to-br from-primary-500 to-accent-500 text-white rounded-full w-11 h-11 flex justify-center items-center shadow-lg shadow-primary-500/25 hover:shadow-xl hover:shadow-primary-500/40 transition-all duration-300 z-50 hover:scale-110"
     >
-      <FaArrowUp />
+      <FaArrowUp size={14} />
     </div>
   );
 };

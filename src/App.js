@@ -11,6 +11,7 @@ import Contact from './components/Contact';
 import { Element } from 'react-scroll';
 import Achievements from './components/Achievements';
 import ParallaxGallery from './components/ParallaxGallery';
+import Projects from './components/Projects';
 import GoToTop from './components/GoToTop';
 import Footer from './components/Footer';
 
@@ -55,6 +56,9 @@ function App() {
         </Element>
         <Element name="experience">
           <Experience />
+        </Element>
+        <Element name="projects">
+          <Projects />
         </Element>
         <Element name="education">
           <Education />

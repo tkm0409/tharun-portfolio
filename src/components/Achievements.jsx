@@ -49,26 +49,36 @@ export default function Achievements() {
             imageOverlay: "Algorithmic Excellence",
             gradient: "from-indigo-100 to-pink-100",
         },
+        {
+            title: "Rockstar of the Month - 2024",
+            description: "Awarded 'Rockstar of the Month' at Hexaware Technologies in 2024 for outstanding performance, exceptional contributions to project delivery, and consistent demonstration of excellence in AI-driven automation solutions.",
+            icon: <StarIcon className="w-10 h-10 text-orange-600" />,
+            image: null,
+            imageOverlay: "Rockstar Award",
+            gradient: "from-orange-100 to-red-100",
+        },
     ];
 
     return (
-        <section className="py-16 bg-gray-50 dark:bg-gray-900">
+        <section className="py-20 md:py-28 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
             <div className="container mx-auto px-4">
-            <header className="space-y-1 text-center">
-                    <h1 className="text-gray-600 dark:text-gray-400 text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl pb-4">Achievements</h1>
+                <header className="text-center mb-14">
+                    <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-accent-500 pb-4">Achievements</h1>
                 </header>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {achievements.map((achievement, index) => (
-                        <div key={index} className={`bg-gradient-to-br ${achievement.gradient} rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl`}>
+                        <div key={index} className={`bg-gradient-to-br ${achievement.gradient} rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-primary-500/10 border border-gray-200/30`}>
                             <div className="p-6">
                                 <div className="flex items-center mb-4">
-                                    {achievement.icon}
-                                    <h3 className="text-xl font-semibold ml-3">{achievement.title}</h3>
+                                    <div className="w-10 h-10 rounded-xl bg-white/50 flex items-center justify-center mr-3">
+                                        {achievement.icon}
+                                    </div>
+                                    <h3 className="text-lg font-bold text-gray-800">{achievement.title}</h3>
                                 </div>
-                                <p className="text-gray-700 mb-4">{achievement.description}</p>
+                                <p className="text-gray-700 mb-4 text-sm leading-relaxed">{achievement.description}</p>
                                 {achievement.image && (
-                                    <div 
-                                        className="mt-4 h-68 overflow-hidden rounded-lg relative"
+                                    <div
+                                        className="mt-4 h-68 overflow-hidden rounded-xl relative"
                                         onMouseEnter={() => setHoveredIndex(index)}
                                         onMouseLeave={() => setHoveredIndex(null)}
                                     >
@@ -77,7 +87,7 @@ export default function Achievements() {
                                             alt={achievement.title}
                                             className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
                                         />
-                                        <div className={`absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-2 transition-opacity duration-300 ${hoveredIndex === index ? 'opacity-100' : 'opacity-0'}`}>
+                                        <div className={`absolute bottom-0 left-0 right-0 bg-black/50 backdrop-blur-sm text-white p-3 transition-opacity duration-300 ${hoveredIndex === index ? 'opacity-100' : 'opacity-0'}`}>
                                             <p className="text-center text-sm font-semibold">{achievement.imageOverlay}</p>
                                         </div>
                                     </div>
@@ -107,30 +117,6 @@ function AwardIcon(props) {
         >
             <circle cx="12" cy="8" r="6" />
             <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11" />
-        </svg>
-    )
-}
-
-function BadgeIcon(props) {
-    return (
-        <svg
-            {...props}
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-        >
-            <path d="M3.85 8.62a4 4 0 0 1 0-5H6" />
-            <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18" />
-            <path d="M4 22h16" />
-            <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22" />
-            <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22" />
-            <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z" />
         </svg>
     )
 }
