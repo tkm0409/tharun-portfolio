@@ -34,7 +34,7 @@ export default function Experience() {
                     Professional Experience
                 </motion.h2>
                 <div className="relative">
-                    <div className="absolute left-4 md:left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary-500 via-accent-500 to-glow-500 hidden sm:block"></div>
+                    <div className="absolute left-4 md:left-8 ml-px top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary-500 via-accent-500 to-glow-500 hidden sm:block"></div>
                     <div className="space-y-12">
                         {experiences.map((exp, index) => (
                             <motion.div
@@ -44,7 +44,7 @@ export default function Experience() {
                                 transition={{ duration: 0.5, delay: index * 0.2 }}
                                 className="relative sm:pl-16 md:pl-20"
                             >
-                                <div className="absolute left-1.5 md:left-5.5 top-6 w-6 h-6 rounded-full bg-gradient-to-br from-primary-500 to-accent-500 border-4 border-white dark:border-gray-900 z-10 hidden sm:flex items-center justify-center">
+                                <div className="absolute left-1.5 md:left-5.5 top-8 w-6 h-6 rounded-full bg-gradient-to-br from-primary-500 to-accent-500 border-4 border-white dark:border-gray-900 z-10 hidden sm:flex items-center justify-center">
                                     <div className="w-2 h-2 rounded-full bg-white"></div>
                                 </div>
                                 <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl border border-gray-200/50 dark:border-gray-700/50 p-6 transition-all duration-300 hover:shadow-xl hover:shadow-primary-500/10 hover:border-primary-300/50 dark:hover:border-primary-600/50">

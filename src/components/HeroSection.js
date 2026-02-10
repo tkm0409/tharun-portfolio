@@ -1,185 +1,106 @@
 import { useEffect, useState } from 'react';
-import { ReactComponent as Logo } from '../assets/logo.svg';
-import cutout from '../assets/cutout1.png';
-import { TextGenerateEffect } from "./text-generate-effect.tsx";
+import cutoutImage from '../assets/Tharun Kumar Cutout.png';
 import { Link } from 'react-scroll';
 import { motion } from 'framer-motion';
-import { Document, Page, pdfjs } from 'react-pdf';
-import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
-import 'react-pdf/dist/esm/Page/TextLayer.css';
-import resumePdf from '../assets/THARUN KUMAR MADDALA - RPA Developer.pdf';
 import ScrollAwareNav from './ScrollAwareNav';
-
-pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 
 export default () => {
     const [state, setState] = useState(false);
-    const [isPdfOpen, setIsPdfOpen] = useState(false);
-    const [numPages, setNumPages] = useState(null);
-    const [pageNumber, setPageNumber] = useState(1);
-
-    const togglePdfViewer = () => setIsPdfOpen(!isPdfOpen);
-
-    function onDocumentLoadSuccess({ numPages }) {
-        setNumPages(numPages);
-    }
 
     const preventContextMenu = (e) => {
         e.preventDefault();
     };
 
-    const navigation = [
-        { title: "Skills", path: "skills" },
-        { title: "Certifications", path: "certifications" },
-        { title: "Experience", path: "experience" },
-        { title: "Projects", path: "projects" },
-        { title: "Education", path: "education" },
-        { title: "Awards", path: "awards" },
-    ];
-
-    useEffect(() => {
-        document.onclick = (e) => {
-            const target = e.target;
-            if (!target.closest(".menu-btn")) setState(false);
-        };
-    }, []);
-
-    const words =
-        "With over 3 years of hands-on experience, I specialize in building intelligent automation solutions as an Applied AI Engineer. My expertise spans GenAI technologies including agentic AI frameworks like OpenAI Agents SDK and LangChain, along with Python, LLM integration, and vector databases. Proficient in deploying AI-powered solutions on AWS and Azure cloud platforms, I drive innovation by bridging cutting-edge AI with enterprise automation. Let's build something extraordinary together!";
-
-    const Brand = () => (
-        <div className="flex items-center justify-between py-5 md:block">
-            <a href="#">
-                <Logo className="h-12 w-auto" />
-            </a>
-            <div className="md:hidden">
-                <button
-                    className="menu-btn text-gray-500 hover:text-gray-800 dark:hover:text-gray-200 p-2 rounded-lg transition-colors duration-200"
-                    onClick={() => setState(!state)}
-                >
-                    {state ? (
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
-                            <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
-                        </svg>
-                    ) : (
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-                        </svg>
-                    )}
-                </button>
-            </div>
-        </div>
-    );
-
-    const fadeInUp = {
-        initial: { opacity: 0, y: 60 },
-        animate: { opacity: 1, y: 0 },
-        transition: { duration: 0.6 }
-    };
-
     return (
-        <div className="relative bg-gradient-to-br from-gray-50 via-primary-50/30 to-white dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 overflow-hidden">
-            <div
-                className={`absolute inset-0 blur-xl h-[580px] pointer-events-none z-0 ${state ? "hidden" : ""}`}
-                style={{
-                    background:
-                        "linear-gradient(143.6deg, rgba(102, 126, 234, 0) 20.79%, rgba(118, 75, 162, 0.2) 40.92%, rgba(240, 147, 251, 0.15) 70.35%)",
-                }}
-            ></div>
-            <ScrollAwareNav />
-            <section className="py-16 md:py-24">
-                <div className="max-w-screen-xl mx-auto text-gray-600 dark:text-gray-300 gap-x-12 items-center justify-between overflow-hidden md:flex md:px-8">
-                    <motion.div
-                        className="flex-none space-y-5 px-4 sm:max-w-lg md:px-0 lg:max-w-xl"
-                        {...fadeInUp}
-                    >
-                        {!state && (
-                            <>
-                                <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-4 text-gray-900 dark:text-white leading-tight">
-                                    <span>Hi! I'm </span>
-                                    <span className="bg-gradient-to-r from-primary-500 via-accent-500 to-glow-500 text-transparent bg-clip-text">
-                                        Tharun Kumar
-                                    </span>
-                                </h1>
-                                <p className="text-xl sm:text-2xl md:text-3xl font-semibold text-primary-600 dark:text-primary-400 mb-8">
-                                    Applied AI Engineer
-                                </p>
-                            </>
-                        )}
-                        <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-8 font-sans text-justify">
-                            <TextGenerateEffect words={words} />
-                        </p>
-                        <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
-                            <button
-                                onClick={togglePdfViewer}
-                                className="px-6 py-3 text-white font-semibold bg-gradient-to-r from-primary-500 to-accent-500 hover:from-primary-600 hover:to-accent-600 rounded-xl transition-all duration-300 shadow-lg hover:shadow-primary-500/25"
-                            >
-                                View Resume
-                            </button>
-                            <Link
-                                to="contact"
-                                smooth={true}
-                                duration={500}
-                                className="px-6 py-3 text-primary-600 dark:text-primary-400 font-semibold border-2 border-primary-500/50 hover:border-primary-500 hover:bg-primary-50 dark:hover:bg-primary-900/30 rounded-xl transition-all duration-300 cursor-pointer text-center"
-                            >
-                                Contact Me
-                            </Link>
-                        </div>
+        <section className="relative min-h-[550px] md:min-h-screen w-full flex flex-col overflow-hidden bg-gray-50 dark:bg-black transition-colors duration-500">
+            {/* Dynamic Background */}
+            <div className="absolute inset-0 z-0 pointer-events-none">
+                {/* Light Mode Gradient */}
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-50/40 via-blue-50/40 to-white/80 dark:opacity-0 transition-opacity duration-500"></div>
 
-                        {isPdfOpen && (
-                            <div className="fixed inset-0 z-50 overflow-auto bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
-                                <div className="bg-white dark:bg-gray-800 p-4 sm:p-6 rounded-2xl w-full max-w-xl shadow-2xl">
-                                    <Document
-                                        file={resumePdf}
-                                        onLoadSuccess={onDocumentLoadSuccess}
-                                    >
-                                        <Page pageNumber={pageNumber} width={Math.min(500, window.innerWidth - 80)} />
-                                    </Document>
-                                    <div className="mt-4 flex justify-between items-center">
-                                        <button
-                                            disabled={pageNumber <= 1}
-                                            onClick={() => setPageNumber(pageNumber - 1)}
-                                            className="px-4 py-2 bg-primary-600 text-white rounded-lg disabled:opacity-50 text-sm font-medium transition-colors hover:bg-primary-700"
-                                        >
-                                            Previous
-                                        </button>
-                                        <p className="text-sm text-gray-600 dark:text-gray-300 font-medium">Page {pageNumber} of {numPages}</p>
-                                        <button
-                                            disabled={pageNumber >= numPages}
-                                            onClick={() => setPageNumber(pageNumber + 1)}
-                                            className="px-4 py-2 bg-primary-600 text-white rounded-lg disabled:opacity-50 text-sm font-medium transition-colors hover:bg-primary-700"
-                                        >
-                                            Next
-                                        </button>
-                                    </div>
-                                    <button
-                                        onClick={togglePdfViewer}
-                                        className="mt-4 w-full px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 rounded-lg text-sm font-medium hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
-                                    >
-                                        Close
-                                    </button>
-                                </div>
-                            </div>
-                        )}
-                    </motion.div>
-                    <motion.div
-                        className="flex-1 mt-12 md:mt-0 hidden md:block"
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.8 }}
-                    >
-                        <div className="relative w-full max-w-xl mx-auto">
-                            <img
-                                src={cutout}
-                                className="w-full drop-shadow-2xl"
-                                alt="Tharun Kumar"
-                                draggable="false"
-                                onContextMenu={preventContextMenu}
-                            />
-                        </div>
-                    </motion.div>
+                {/* Dark Mode Gradient */}
+                <div className="absolute inset-0 bg-gradient-to-br from-black via-zinc-900 to-zinc-950 opacity-0 dark:opacity-100 transition-opacity duration-500"></div>
+
+                {/* Accents */}
+                <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary-400/20 rounded-full blur-[120px] mix-blend-multiply dark:mix-blend-overlay animate-pulse"></div>
+                <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-accent-400/20 rounded-full blur-[120px] mix-blend-multiply dark:mix-blend-overlay animate-pulse delay-1000"></div>
+            </div>
+
+            <ScrollAwareNav />
+
+            <div className="relative flex-grow flex items-center justify-center w-full max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 pb-0">
+
+                {/* Background Text Layer - Behind Image */}
+                <div className="absolute inset-0 flex items-center justify-center z-0 select-none overflow-hidden">
+                    <h1 className="text-[17vw] sm:text-[19vw] font-black text-gray-200/60 dark:text-gray-800 leading-none tracking-tighter whitespace-nowrap animate-fade-in-up transform translate-y-10 sm:translate-y-0">
+                        THARUN
+                    </h1>
                 </div>
-            </section>
-        </div>
+
+                {/* Content Container */}
+                <div className="relative z-10 w-full h-full flex flex-col md:flex-row items-center justify-center md:justify-between md:min-h-[700px]">
+
+                    {/* Image Layer - Now first in mobile view */}
+                    <motion.div
+                        className="relative w-full md:absolute md:right-0 md:bottom-0 z-10 md:w-auto flex items-end justify-center md:justify-end pointer-events-none order-1 md:order-2"
+                        initial={{ opacity: 0, y: 50, scale: 0.9 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        transition={{ duration: 0.8, delay: 0.2 }}
+                    >
+                        <img
+                            src={cutoutImage}
+                            alt="Tharun Kumar"
+                            className="h-[50vh] sm:h-[55vh] md:h-[85vh] w-auto object-contain object-bottom drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)] dark:drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)] translate-y-0 [mask-image:linear-gradient(to_bottom,black_80%,transparent)] md:[mask-image:none]"
+                            draggable="false"
+                            onContextMenu={preventContextMenu}
+                        />
+                    </motion.div>
+
+                    {/* Text Content - Overlays on mobile, left side on desktop */}
+                    <div className="absolute md:relative w-full md:w-[55%] lg:w-1/2 flex flex-col items-start justify-center text-left z-30 px-6 md:px-0 md:pl-8 lg:pl-16 top-[15%] md:top-auto order-2 md:order-1">
+                        <motion.div
+                            initial={{ opacity: 0, x: -30 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.8, ease: "easeOut" }}
+                            className="max-w-2xl"
+                        >
+                            {/* Greeting */}
+                            <h2 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-gray-900 dark:text-white mb-3 tracking-tight leading-tight">
+                                Hello,
+                                <br />
+                                <span className="bg-gradient-to-r from-primary-600 to-accent-600 dark:from-primary-400 dark:to-accent-400 bg-clip-text text-transparent">
+                                    I'm Tharun
+                                </span>
+                            </h2>
+
+                            {/* One-liner */}
+                            <p className="text-lg sm:text-xl md:text-2xl text-gray-700 dark:text-gray-300 font-medium mb-8 leading-relaxed">
+                                Applied AI Engineer designing and building beautiful web applications.
+                            </p>
+
+                            {/* Action Buttons */}
+                            <div className="flex flex-wrap gap-3 sm:gap-4">
+                                <Link
+                                    to="projects"
+                                    smooth={true}
+                                    duration={500}
+                                    className="px-6 py-3 sm:px-8 sm:py-3.5 bg-gray-900 dark:bg-white text-white dark:text-black font-bold text-sm sm:text-base rounded-full transition-all hover:scale-105 hover:shadow-lg active:scale-95 cursor-pointer shadow-md"
+                                >
+                                    View My Work
+                                </Link>
+                                <Link
+                                    to="contact"
+                                    smooth={true}
+                                    duration={500}
+                                    className="px-6 py-3 sm:px-8 sm:py-3.5 border-2 border-gray-900 dark:border-white text-gray-900 dark:text-white font-semibold text-sm sm:text-base rounded-full hover:bg-gray-900 hover:text-white dark:hover:bg-white dark:hover:text-black transition-all cursor-pointer"
+                                >
+                                    Get In Touch
+                                </Link>
+                            </div>
+                        </motion.div>
+                    </div>
+                </div>
+            </div>
+        </section>
     );
 };

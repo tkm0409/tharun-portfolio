@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { ThemeProvider } from './components/ThemeContext';
-import ThemeToggle from './components/ThemeToggle';
-import ThemePreferenceDialog from './components/ThemePreferenceDialog';
+
+
 import HeroSection from './components/HeroSection';
+import ShortStory from './components/ShortStory';
 import Skills from './components/Skills';
 import Certifications from './components/Certifications';
 import Experience from './components/Experience';
@@ -15,39 +16,68 @@ import Projects from './components/Projects';
 import GoToTop from './components/GoToTop';
 import Footer from './components/Footer';
 
+
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
-  const [showPreferenceDialog, setShowPreferenceDialog] = useState(true);
 
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme');
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
     if (savedTheme) {
       setIsDarkMode(savedTheme === 'dark');
-      setShowPreferenceDialog(false);
+    } else {
+      setIsDarkMode(systemPrefersDark);
     }
+
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const handleChange = (e) => {
+      if (!localStorage.getItem('theme')) {
+        setIsDarkMode(e.matches);
+      }
+    };
+
+    // Modern browsers
+    if (mediaQuery.addEventListener) {
+      mediaQuery.addEventListener('change', handleChange);
+    } else {
+      // Fallback for older browsers
+      mediaQuery.addListener(handleChange);
+    }
+
+    return () => {
+      if (mediaQuery.removeEventListener) {
+        mediaQuery.removeEventListener('change', handleChange);
+      } else {
+        mediaQuery.removeListener(handleChange);
+      }
+    };
   }, []);
 
   const toggleTheme = () => {
-    setIsDarkMode(!isDarkMode);
-    localStorage.setItem('theme', !isDarkMode ? 'dark' : 'light');
+    const newMode = !isDarkMode;
+    setIsDarkMode(newMode);
+    localStorage.setItem('theme', newMode ? 'dark' : 'light');
+    if (newMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
   };
 
-  const setThemePreference = (preference) => {
-    setIsDarkMode(preference === 'dark');
-    localStorage.setItem('theme', preference);
-    setShowPreferenceDialog(false);
-  };
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [isDarkMode]);
 
   return (
     <ThemeProvider value={{ isDarkMode, toggleTheme }}>
-      <div className={`App ${isDarkMode ? 'dark' : ''}`}>
-        {showPreferenceDialog && (
-          <ThemePreferenceDialog setThemePreference={setThemePreference} />
-        )}
-        <nav className="fixed top-0 right-0 m-4 z-50">
-          <ThemeToggle isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
-        </nav>
+      <div className="App transition-colors duration-300 ease-in-out">
         <HeroSection />
+        <ShortStory />
         <Element name="skills">
           <Skills />
         </Element>

@@ -1,9 +1,19 @@
+const colors = require('tailwindcss/colors');
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {
       colors: {
+        gray: colors.zinc,
+        dark: {
+          bg: '#09090b', // Zinc 950 - Deep, neutral black
+          card: '#18181b', // Zinc 900 - Subtle card background
+          text: '#f4f4f5', // Zinc 100 - High contrast text
+          secondary: '#a1a1aa', // Zinc 400 - Muted secondary text
+          border: '#27272a', // Zinc 800 - Subtle borders
+        },
         primary: {
           50: '#eef2ff',
           100: '#e0e7ff',

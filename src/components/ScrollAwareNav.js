@@ -1,32 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-scroll';
-import { ReactComponent as Logo } from '../assets/logo.svg';
+import logo from '../assets/logo.svg';
+import ThemeToggle from './ThemeToggle';
+import ThemeContext from './ThemeContext';
 
 const ScrollAwareNav = () => {
-  const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const controlNavbar = () => {
-    if (typeof window !== 'undefined') {
-      if (window.scrollY > lastScrollY) {
-        setIsVisible(false);
-      } else {
-        setIsVisible(true);
-      }
-      setLastScrollY(window.scrollY);
-    }
-  };
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      window.addEventListener('scroll', controlNavbar);
-      return () => {
-        window.removeEventListener('scroll', controlNavbar);
-      };
-    }
-  }, [lastScrollY]);
-
+  const { isDarkMode, toggleTheme } = useContext(ThemeContext);
   const navigation = [
     { title: "Skills", path: "skills" },
     { title: "Certifications", path: "certifications" },
@@ -39,28 +19,38 @@ const ScrollAwareNav = () => {
 
   return (
     <>
-      <nav className={`fixed top-0 left-0 right-0 transition-transform duration-300 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg border-b border-gray-200/50 dark:border-gray-700/50 ${isVisible ? 'translate-y-0' : '-translate-y-full'}`}>
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/10 dark:bg-dark-bg/20 backdrop-blur-lg border-b border-gray-200/50 dark:border-gray-700/50 transition-all duration-300">
         <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex-shrink-0">
-              <Logo className="h-10 w-auto" />
+              <img
+                src={logo}
+                alt="Logo"
+                className="h-12 w-auto select-none pointer-events-none"
+                draggable="false"
+                onContextMenu={(e) => e.preventDefault()}
+              />
             </div>
-            <div className="hidden md:block">
-              <div className="ml-10 flex items-baseline space-x-1">
+            <div className="hidden md:flex items-center flex-1 justify-end">
+              <div className="flex items-baseline space-x-1">
                 {navigation.map((item, index) => (
                   <Link
                     key={index}
                     to={item.path}
                     smooth={true}
                     duration={500}
-                    className="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 px-4 py-2 rounded-lg text-sm font-medium cursor-pointer transition-colors duration-200 hover:bg-primary-50 dark:hover:bg-primary-900/30"
+                    className="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 px-3 py-2 rounded-lg text-sm font-medium cursor-pointer transition-colors duration-200 hover:bg-primary-50 dark:hover:bg-primary-900/30"
                   >
                     {item.title}
                   </Link>
                 ))}
               </div>
+              <div className="ml-4">
+                <ThemeToggle isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
+              </div>
             </div>
-            <div className="md:hidden">
+            <div className="md:hidden flex items-center space-x-3">
+              <ThemeToggle isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 className="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 focus:outline-none p-2 rounded-lg transition-colors duration-200"
