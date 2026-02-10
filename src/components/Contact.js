@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export default ({ isDarkMode }) => {
+const Contact = ({ isDarkMode }) => {
     const [message, setMessage] = useState('');
 
     const contactMethods = [
@@ -58,11 +58,10 @@ export default ({ isDarkMode }) => {
                             <textarea
                                 id="message"
                                 rows="4"
-                                className={`block w-full rounded-xl border p-3 text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500/50 ${
-                                    isDarkMode
-                                        ? 'bg-gray-800/80 border-gray-700 text-gray-100 focus:border-primary-500'
-                                        : 'bg-white border-gray-200 text-gray-900 focus:border-primary-500'
-                                }`}
+                                className={`block w-full rounded-xl border p-3 text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500/50 ${isDarkMode
+                                    ? 'bg-gray-800/80 border-gray-700 text-gray-100 focus:border-primary-500'
+                                    : 'bg-white border-gray-200 text-gray-900 focus:border-primary-500'
+                                    }`}
                                 value={message}
                                 onChange={(e) => setMessage(e.target.value)}
                                 required
@@ -77,3 +76,5 @@ export default ({ isDarkMode }) => {
         </main>
     )
 }
+
+export default Contact;

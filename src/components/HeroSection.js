@@ -1,11 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import cutoutImage from '../assets/Tharun Kumar Cutout.png';
 import { Link } from 'react-scroll';
 import { motion } from 'framer-motion';
 import ScrollAwareNav from './ScrollAwareNav';
 
-export default () => {
-    const [state, setState] = useState(false);
+const HeroSection = () => {
 
     const preventContextMenu = (e) => {
         e.preventDefault();
@@ -104,3 +103,5 @@ export default () => {
         </section>
     );
 };
+
+export default HeroSection;
