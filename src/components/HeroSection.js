@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import cutoutImage from '../assets/Tharun Kumar Cutout.png';
 import { Link } from 'react-scroll';
 import { motion } from 'framer-motion';
