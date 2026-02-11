@@ -1,208 +1,188 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { FaTrophy, FaMedal, FaStar, FaCode, FaLaptopCode, FaAward } from 'react-icons/fa';
+import { IoSparkles } from 'react-icons/io5';
+
 import award from "../assets/Award.png";
 import codeRush from "../assets/codeRush.jpg";
 import designathon2024 from "../assets/gallery/WINNERS.jpeg";
 import designathon2023 from "../assets/Designathon2023.jpg";
-import algomaniac2024 from "../assets/Algomaniac2024.jpg"; // Add this import
+import algomaniac2024 from "../assets/Algomaniac2024.jpg";
+import techGuru from "../assets/TechGuru.jpg";
+import designathon2025 from "../assets/Designathon-2025.jpg";
+import rockstar2024 from "../assets/RockStar 2024.jpg";
+
+const achievements = [
+    {
+        title: "Tech Guru Award",
+        subtitle: "Q3 2025",
+        description: "Honored with the Tech Guru Award at Hexaware Technologies for exceptional technical expertise and innovative contributions.",
+        icon: <FaTrophy className="w-6 h-6" />,
+        image: techGuru,
+        tag: "Excellence",
+        color: "text-amber-500",
+        bg: "bg-amber-500/10",
+        border: "border-amber-200 dark:border-amber-800"
+    },
+    {
+        title: "GenAI Designathon",
+        subtitle: "Runner Up - 2025",
+        description: "Secured runner-up position with a Smart Recruitment Application, demonstrating advanced AI capabilities in HR technology.",
+        icon: <FaMedal className="w-6 h-6" />,
+        image: designathon2025,
+        tag: "Innovation",
+        color: "text-emerald-500",
+        bg: "bg-emerald-500/10",
+        border: "border-emerald-200 dark:border-emerald-800"
+    },
+    {
+        title: "Rockstar of the Month",
+        subtitle: "December 2024",
+        description: "Awarded for outstanding performance and consistent demonstration of excellence in AI-driven automation solutions.",
+        icon: <FaStar className="w-6 h-6" />,
+        image: rockstar2024,
+        tag: "Performance",
+        color: "text-rose-500",
+        bg: "bg-rose-500/10",
+        border: "border-rose-200 dark:border-rose-800"
+    },
+    {
+        title: "Hexaware Ambassador",
+        subtitle: "Knowledge Ninja",
+        description: "Recognized as a Knowledge Ninja and awarded the Learning Award for Q4 2023 for commitment to continuous learning.",
+        icon: <FaAward className="w-6 h-6" />,
+        image: award,
+        tag: "Learning",
+        color: "text-purple-500",
+        bg: "bg-purple-500/10",
+        border: "border-purple-200 dark:border-purple-800"
+    },
+    {
+        title: "Maverick Designathon",
+        subtitle: "Winner - 2024",
+        description: "Won the Maverick Gen AI Designathon with the 'AI Powered Panel Slot Allocation' application.",
+        icon: <IoSparkles className="w-6 h-6" />,
+        image: designathon2024,
+        tag: "Winner",
+        color: "text-blue-500",
+        bg: "bg-blue-500/10",
+        border: "border-blue-200 dark:border-blue-800"
+    },
+    {
+        title: "CodeRush NLP Sprint",
+        subtitle: "3rd Place - 2024",
+        description: "Achieved 3rd prize in a prestigious two-day coding sprint focused on Natural Language Processing (NLP).",
+        icon: <FaCode className="w-6 h-6" />,
+        image: codeRush,
+        tag: "Hackathon",
+        color: "text-cyan-500",
+        bg: "bg-cyan-500/10",
+        border: "border-cyan-200 dark:border-cyan-800"
+    },
+    {
+        title: "Designathon 2023",
+        subtitle: "Runner Up",
+        description: "Secured second position for designing the functional UI for the Performance Management System.",
+        icon: <FaLaptopCode className="w-6 h-6" />,
+        image: designathon2023,
+        tag: "UI/UX",
+        color: "text-yellow-500",
+        bg: "bg-yellow-500/10",
+        border: "border-yellow-200 dark:border-yellow-800"
+    },
+    {
+        title: "Algomaniac 2024",
+        subtitle: "Top Performer",
+        description: "Competed in a high-intensity algorithmic contest, solving complex problems and demonstrating coding proficiency.",
+        icon: <FaCode className="w-6 h-6" />,
+        image: algomaniac2024,
+        tag: "Algorithm",
+        color: "text-indigo-500",
+        bg: "bg-indigo-500/10",
+        border: "border-indigo-200 dark:border-indigo-800"
+    },
+];
+
+const AchievementCard = ({ item, index }) => {
+    return (
+        <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: index * 0.1 }}
+            className={`group relative overflow-hidden rounded-3xl bg-white dark:bg-gray-900/50 border ${item.border} backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-500`}
+        >
+            {/* Image Section */}
+            <div className="relative h-48 sm:h-56 overflow-hidden">
+                <div className={`absolute top-3 right-3 z-10 px-3 py-1 rounded-full text-xs font-bold bg-white/90 dark:bg-black/80 backdrop-blur-md ${item.color} shadow-sm`}>
+                    {item.tag}
+                </div>
+                <img
+                    src={item.image}
+                    alt={item.title}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60" />
+
+                {/* Icon overlaid on image bottom-left */}
+                <div className={`absolute bottom-3 left-3 w-10 h-10 rounded-xl flex items-center justify-center bg-white dark:bg-gray-800 shadow-md ${item.color}`}>
+                    {item.icon}
+                </div>
+            </div>
+
+            {/* Content Section */}
+            <div className="p-5 sm:p-6">
+                <div className="flex justify-between items-start mb-2">
+                    <div>
+                        <h3 className="text-lg font-bold text-gray-900 dark:text-white group-hover:text-primary-500 transition-colors">
+                            {item.title}
+                        </h3>
+                        <p className={`text-xs font-semibold uppercase tracking-wider ${item.color} mt-1`}>
+                            {item.subtitle}
+                        </p>
+                    </div>
+                </div>
+                <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed line-clamp-3">
+                    {item.description}
+                </p>
+
+                {/* Decoration */}
+                <div className={`absolute -bottom-2 -right-2 w-20 h-20 rounded-full blur-3xl opacity-20 ${item.bg.replace('/10', '/30')}`} />
+            </div>
+        </motion.div>
+    );
+};
 
 export default function Achievements() {
-    const [hoveredIndex, setHoveredIndex] = useState(null);
-
-    const achievements = [
-        {
-            title: "Hexaware Learning Ambassador",
-            description: "Recognized as a Knowledge Ninja and awarded the Learning Award for Q4 2023 at Hexaware, demonstrating a strong commitment to continuous learning and skill enhancement.",
-            icon: <TrophyIcon className="w-10 h-10 text-purple-600" />,
-            image: award,
-            imageOverlay: "Knowledge Ninja Award",
-            gradient: "from-purple-200 to-yellow-200",
-        },
-        {
-            title: "Maverick Designathon - 2024",
-            description: "Won the Maverick Gen AI Designathon 2024, organized by Hexaware Technologies, with the innovative 'AI Powered Panel Slot Allocation' application, showcasing exceptional AI and software development skills.",
-            icon: <StarIcon className="w-10 h-10 text-green-600" />,
-            image: designathon2024,
-            imageOverlay: "AI Innovation Winner",
-            gradient: "from-green-100 to-red-200",
-        },
-        {
-            title: "CodeRush - 2024",
-            description: "Achieved the 3rd prize at CodeRush – 2024, a prestigious two-day coding sprint focused on Natural Language Processing (NLP), showcasing proficiency and innovation in software development, organized by Hexaware.",
-            icon: <SparklesIcon className="w-10 h-10 text-blue-600" />,
-            image: codeRush,
-            imageOverlay: "CodeRush Winner",
-            gradient: "from-blue-100 to-green-100",
-        },
-        {
-            title: "Designathon 2023",
-            description: "Secured the second position in the Designathon event hosted by Hexaware in 2023, excelling in designing the functional UI for the Performance Management System, earning the Runner Award.",
-            icon: <AwardIcon className="w-10 h-10 text-yellow-600" />,
-            image: designathon2023,
-            imageOverlay: "Runner Award",
-            gradient: "from-yellow-100 to-blue-200",
-        },
-        {
-            title: "Algomaniac 2024",
-            description: "Participated in Algomaniac 2024, a competitive programming contest that challenges participants to solve complex algorithmic problems, demonstrating advanced problem-solving skills and coding proficiency.",
-            icon: <CodeIcon className="w-10 h-10 text-indigo-600" />,
-            image: algomaniac2024,
-            imageOverlay: "Algorithmic Excellence",
-            gradient: "from-indigo-100 to-pink-100",
-        },
-        {
-            title: "Rockstar of the Month - 2024",
-            description: "Awarded 'Rockstar of the Month' at Hexaware Technologies in 2024 for outstanding performance, exceptional contributions to project delivery, and consistent demonstration of excellence in AI-driven automation solutions.",
-            icon: <StarIcon className="w-10 h-10 text-orange-600" />,
-            image: null,
-            imageOverlay: "Rockstar Award",
-            gradient: "from-orange-100 to-red-100",
-        },
-    ];
-
     return (
-        <section className="py-20 md:py-28 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
-            <div className="container mx-auto px-4">
-                <header className="text-center mb-14">
-                    <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-accent-500 pb-4">Achievements</h1>
-                </header>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {achievements.map((achievement, index) => (
-                        <div key={index} className={`bg-gradient-to-br ${achievement.gradient} rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-primary-500/10 border border-gray-200/30`}>
-                            <div className="p-6">
-                                <div className="flex items-center mb-4">
-                                    <div className="w-10 h-10 rounded-xl bg-white/50 flex items-center justify-center mr-3">
-                                        {achievement.icon}
-                                    </div>
-                                    <h3 className="text-lg font-bold text-gray-800">{achievement.title}</h3>
-                                </div>
-                                <p className="text-gray-700 mb-4 text-sm leading-relaxed">{achievement.description}</p>
-                                {achievement.image && (
-                                    <div
-                                        className="mt-4 h-68 overflow-hidden rounded-xl relative"
-                                        onMouseEnter={() => setHoveredIndex(index)}
-                                        onMouseLeave={() => setHoveredIndex(null)}
-                                    >
-                                        <img
-                                            src={achievement.image}
-                                            alt={achievement.title}
-                                            className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-                                        />
-                                        <div className={`absolute bottom-0 left-0 right-0 bg-black/50 backdrop-blur-sm text-white p-3 transition-opacity duration-300 ${hoveredIndex === index ? 'opacity-100' : 'opacity-0'}`}>
-                                            <p className="text-center text-sm font-semibold">{achievement.imageOverlay}</p>
-                                        </div>
-                                    </div>
-                                )}
-                            </div>
-                        </div>
+        <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-[#0a0a0a] overflow-hidden">
+            {/* Background Decor */}
+            <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+                <div className="absolute top-20 left-10 w-64 h-64 bg-primary-500/5 rounded-full blur-3xl" />
+                <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent-500/5 rounded-full blur-3xl" />
+            </div>
+
+            <div className="container max-w-7xl mx-auto relative z-10">
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="text-center mb-16"
+                >
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-gray-900 via-gray-700 to-gray-900 dark:from-white dark:via-gray-200 dark:to-gray-400 mb-4 tracking-tight">
+                        Honors & Awards
+                    </h2>
+                    <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-sm sm:text-base">
+                        Recognition for dedication, innovation, and technical excellence in software development and competitive programming.
+                    </p>
+                </motion.div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8">
+                    {achievements.map((item, index) => (
+                        <AchievementCard key={index} item={item} index={index} />
                     ))}
                 </div>
             </div>
         </section>
     );
-}
-
-function AwardIcon(props) {
-    return (
-        <svg
-            {...props}
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-        >
-            <circle cx="12" cy="8" r="6" />
-            <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11" />
-        </svg>
-    )
-}
-
-function SparklesIcon(props) {
-    return (
-        <svg
-            {...props}
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-        >
-            <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z" />
-            <path d="M5 3v4" />
-            <path d="M19 17v4" />
-            <path d="M3 5h4" />
-            <path d="M17 19h4" />
-        </svg>
-    )
-}
-
-function TrophyIcon(props) {
-    return (
-        <svg
-            {...props}
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-        >
-            <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6" />
-            <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18" />
-            <path d="M4 22h16" />
-            <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22" />
-            <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22" />
-            <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z" />
-        </svg>
-    )
-}
-
-function StarIcon(props) {
-    return (
-        <svg
-            {...props}
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-        >
-            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-        </svg>
-    )
-}
-
-function CodeIcon(props) {
-    return (
-        <svg
-            {...props}
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-        >
-            <polyline points="16 18 22 12 16 6" />
-            <polyline points="8 6 2 12 8 18" />
-        </svg>
-    )
 }

@@ -51,8 +51,6 @@ const Education = () => {
                                 </div>
                                 <ul className="mt-4 space-y-2 text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
                                     <li>Specialized in signal processing and embedded systems</li>
-                                    <li>Completed a capstone project on IoT-based smart home automation</li>
-                                    <li>Active member of the college's robotics club</li>
                                 </ul>
                             </CardContent>
                             <CardFooter>

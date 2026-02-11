@@ -8,10 +8,10 @@ const ScrollAwareNav = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { isDarkMode, toggleTheme } = useContext(ThemeContext);
   const navigation = [
-    { title: "Skills", path: "skills" },
-    { title: "Certifications", path: "certifications" },
     { title: "Experience", path: "experience" },
     { title: "Projects", path: "projects" },
+    { title: "Skills", path: "skills" },
+    { title: "Certifications", path: "certifications" },
     { title: "Education", path: "education" },
     { title: "Achievements", path: "awards" },
     { title: "Contact", path: "contact" },

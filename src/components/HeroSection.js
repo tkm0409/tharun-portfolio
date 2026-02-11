@@ -1,14 +1,28 @@
 import cutoutImage from '../assets/Tharun Kumar Cutout.png';
-import tkmImage from '../assets/TKM.png';
 import { Link } from 'react-scroll';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import ScrollAwareNav from './ScrollAwareNav';
-import { useContext } from 'react';
-import ThemeContext from './ThemeContext';
+import { useState, useEffect } from 'react';
 
 const HeroSection = () => {
-    const { isDarkMode } = useContext(ThemeContext);
-    const heroImage = isDarkMode ? cutoutImage : tkmImage;
+    // Rotating keywords for the hero section
+    const keywords = [
+        { text: 'RAG-based', color: 'text-orange-600 dark:text-orange-400' },
+        { text: 'Multi-modal', color: 'text-emerald-600 dark:text-emerald-400' },
+        { text: 'Production-ready', color: 'text-orange-600 dark:text-orange-400' },
+        { text: 'Enterprise-ready', color: 'text-emerald-600 dark:text-emerald-400' },
+        { text: 'Agentic', color: 'text-orange-600 dark:text-orange-400' },
+    ];
+
+    const [currentKeywordIndex, setCurrentKeywordIndex] = useState(0);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentKeywordIndex((prev) => (prev + 1) % keywords.length);
+        }, 2500); // Change every 2.5 seconds
+
+        return () => clearInterval(interval);
+    }, [keywords.length]);
 
     const preventContextMenu = (e) => {
         e.preventDefault();
@@ -65,7 +79,7 @@ const HeroSection = () => {
                             {/* Photo Card */}
                             <div className="relative w-64 h-64 rounded-full overflow-hidden border-4 border-white dark:border-gray-800 shadow-2xl bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900">
                                 <img
-                                    src={heroImage}
+                                    src={cutoutImage}
                                     alt="Tharun Kumar"
                                     className="w-full h-full object-cover object-top scale-110 -translate-x-4"
                                     draggable="false"
@@ -100,9 +114,24 @@ const HeroSection = () => {
                                 </span>
                             </h2>
 
-                            {/* One-liner */}
+                            {/* One-liner with rotating keywords */}
                             <p className="text-base text-gray-700 dark:text-gray-300 font-medium text-center mb-6 leading-relaxed">
-                                Applied AI Engineer designing and building beautiful web applications.
+                                Applied AI Engineer building{' '}
+                                <span className="inline-block">
+                                    <AnimatePresence mode="wait">
+                                        <motion.span
+                                            key={currentKeywordIndex}
+                                            initial={{ opacity: 0, y: 20 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            exit={{ opacity: 0, y: -20 }}
+                                            transition={{ duration: 0.5 }}
+                                            className={`font-extrabold ${keywords[currentKeywordIndex].color}`}
+                                        >
+                                            {keywords[currentKeywordIndex].text}
+                                        </motion.span>
+                                    </AnimatePresence>
+                                </span>{' '}
+                                AI Solutions.
                             </p>
 
                             {/* Action Buttons */}
@@ -135,7 +164,7 @@ const HeroSection = () => {
                         transition={{ duration: 0.8, delay: 0.2 }}
                     >
                         <img
-                            src={heroImage}
+                            src={cutoutImage}
                             alt="Tharun Kumar"
                             className="h-[85vh] w-auto object-contain object-bottom drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)] dark:drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
                             draggable="false"
@@ -160,9 +189,24 @@ const HeroSection = () => {
                                 </span>
                             </h2>
 
-                            {/* One-liner */}
+                            {/* One-liner with rotating keywords */}
                             <p className="text-2xl text-gray-700 dark:text-gray-300 font-medium mb-8 leading-relaxed">
-                                Applied AI Engineer designing and building beautiful web applications.
+                                Applied AI Engineer building{' '}
+                                <span className="inline-block">
+                                    <AnimatePresence mode="wait">
+                                        <motion.span
+                                            key={currentKeywordIndex}
+                                            initial={{ opacity: 0, y: 20 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            exit={{ opacity: 0, y: -20 }}
+                                            transition={{ duration: 0.5 }}
+                                            className={`font-extrabold ${keywords[currentKeywordIndex].color}`}
+                                        >
+                                            {keywords[currentKeywordIndex].text}
+                                        </motion.span>
+                                    </AnimatePresence>
+                                </span>{' '}
+                                AI Solutions.
                             </p>
 
                             {/* Action Buttons */}

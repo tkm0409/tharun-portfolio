@@ -1,6 +1,70 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { FaBriefcase, FaCode } from 'react-icons/fa';
+import { motion} from 'framer-motion';
+import { FaLaptopCode, FaBriefcase, FaBuilding } from 'react-icons/fa';
+
+const ExperienceCard = ({ experience, index }) => {
+    return (
+        <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6, delay: index * 0.2 }}
+            className="relative pl-8 sm:pl-32 py-6 group"
+        >
+            {/* Timeline Line */}
+            <div className="absolute left-2 sm:left-0 top-0 bottom-0 w-0.5 bg-gradient-to-b from-gray-200 via-gray-300 to-gray-200 dark:from-gray-800 dark:via-gray-700 dark:to-gray-800 group-last:bottom-auto group-last:h-full"></div>
+
+            {/* Timeline Connector Dot */}
+            <div className="absolute left-[0.2rem] sm:-left-[0.35rem] top-10 w-4 h-4 rounded-full border-4 border-white dark:border-gray-900 bg-primary-500 shadow-lg z-10 transition-transform duration-300 group-hover:scale-150 group-hover:bg-accent-500"></div>
+
+            {/* Date - Desktop ONLY (Left Side) */}
+            <div className="hidden sm:block absolute left-[-200px] top-8 w-40 text-right">
+                <span className="text-xl font-bold text-gray-400 dark:text-gray-500 group-hover:text-primary-500 transition-colors duration-300">
+                    {experience.period}
+                </span>
+            </div>
+
+            {/* Card Content */}
+            <div className="relative bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-3xl p-6 sm:p-8 shadow-sm hover:shadow-2xl hover:shadow-primary-500/10 transition-all duration-300 group-hover:-translate-y-1">
+                {/* Mobile Date */}
+                <div className="sm:hidden mb-2 inline-block px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-full text-xs font-bold text-gray-500 dark:text-gray-400">
+                    {experience.period}
+                </div>
+
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4">
+                    <div>
+                        <h3 className="text-2xl font-bold text-gray-900 dark:text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-primary-500 group-hover:to-accent-500 transition-all duration-300">
+                            {experience.title}
+                        </h3>
+                        <div className="flex items-center text-gray-600 dark:text-gray-400 mt-1 font-medium">
+                            <FaBuilding className="mr-2 text-primary-500" />
+                            {experience.company}
+                        </div>
+                    </div>
+                    <div className="mt-4 sm:mt-0">
+                        <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 flex items-center justify-center text-primary-500 shadow-inner group-hover:scale-110 transition-transform duration-300">
+                            {experience.icon}
+                        </div>
+                    </div>
+                </div>
+
+                <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed text-base">
+                    {experience.description}
+                </p>
+
+                <div className="flex flex-wrap gap-2">
+                    {experience.skills.map((skill, i) => (
+                        <span
+                            key={i}
+                            className="px-3 py-1 text-xs font-semibold bg-primary-50 dark:bg-primary-900/10 text-primary-600 dark:text-primary-400 rounded-lg border border-primary-100 dark:border-primary-900/20 group-hover:border-primary-200 dark:group-hover:border-primary-800 transition-colors"
+                        >
+                            {skill}
+                        </span>
+                    ))}
+                </div>
+            </div>
+        </motion.div>
+    );
+};
 
 export default function Experience() {
     const experiences = [
@@ -8,69 +72,55 @@ export default function Experience() {
             title: "Software Engineer",
             company: "Hexaware Technologies",
             period: "Jun 2022 - Present",
-            description: "As a Microsoft full stack engineer at Hexaware Technologies, I specialize in developing innovative applications using cutting-edge technologies such as .NET Core, Angular, and React. My role involves seamlessly integrating these solutions with databases and cloud services, constantly striving for excellence and efficiency. I've also ventured into Robotic Process Automation (RPA) using Automation Anywhere, successfully integrating automation workflows with platforms like Salesforce and ServiceNow to enhance organizational productivity. Additionally, I spearheaded the GenAI Discovery initiative, developing intelligent automation prototypes using OpenAI Agents SDK and LangChain. I actively mentor junior developers, coordinate UAT activities, and participate in stakeholder meetings to align technical solutions with business objectives.",
-            skills: ["C#", ".NET Core", "Angular", "React", "Azure", "RPA", "Salesforce", "ServiceNow", "Python", "DocuSign", "Jira", "OpenAI Agents", "LangChain"],
-            icon: <FaBriefcase className="text-primary-500" />
+            description: "Specializing in full-stack development with .NET Core, Angular, and React. Leading initiatives in RPA using Automation Anywhere and pioneering GenAI solutions with OpenAI Agents SDK. A key contributor to technical excellence, mentoring junior developers, and driving innovation in enterprise automation.",
+            skills: ["React", ".NET Core", "Azure", "RPA", "GenAI", "Python", "System Design"],
+            icon: <FaBriefcase size={20} />
         },
         {
-            title: "Intern",
+            title: "Project Intern",
             company: "Wipro",
             period: "Mar 2022 - Jun 2022",
-            description: "During my internship at Wipro in Bangaluru, I immersed myself in Selenium automation, leveraging Java to craft robust and efficient testing solutions. I actively contributed to enhancing automation testing processes using TestNG, streamlining CI/CD pipelines, and improving overall quality assurance practices.",
-            skills: ["Java", "Selenium", "TestNG", "CI/CD", "Automation Testing", "Quality Assurance"],
-            icon: <FaCode className="text-accent-500" />
+            description: "Focused on quality assurance automation, leveraging Java and Selenium to build robust testing frameworks. Contributed to CI/CD pipeline optimization and enhanced software reliability through comprehensive test strategies.",
+            skills: ["Java", "Selenium", "TestNG", "CI/CD", "Automation", "Quality Assurance"],
+            icon: <FaLaptopCode size={20} />
         }
     ];
 
     return (
-        <div className="bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 py-20 md:py-28">
-            <div className="container mx-auto px-4 max-w-4xl">
-                <motion.h2
-                    className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-center mb-16 bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-accent-500"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
-                >
-                    Professional Experience
-                </motion.h2>
-                <div className="relative">
-                    <div className="absolute left-4 md:left-8 ml-px top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary-500 via-accent-500 to-glow-500 hidden sm:block"></div>
-                    <div className="space-y-12">
-                        {experiences.map((exp, index) => (
-                            <motion.div
-                                key={index}
-                                initial={{ opacity: 0, x: -30 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{ duration: 0.5, delay: index * 0.2 }}
-                                className="relative sm:pl-16 md:pl-20"
-                            >
-                                <div className="absolute left-1.5 md:left-5.5 top-8 w-6 h-6 rounded-full bg-gradient-to-br from-primary-500 to-accent-500 border-4 border-white dark:border-gray-900 z-10 hidden sm:flex items-center justify-center">
-                                    <div className="w-2 h-2 rounded-full bg-white"></div>
-                                </div>
-                                <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl border border-gray-200/50 dark:border-gray-700/50 p-6 transition-all duration-300 hover:shadow-xl hover:shadow-primary-500/10 hover:border-primary-300/50 dark:hover:border-primary-600/50">
-                                    <div className="flex items-center mb-3">
-                                        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-50 to-accent-500/10 dark:from-primary-900/30 dark:to-accent-500/10 flex items-center justify-center mr-3">
-                                            {exp.icon}
-                                        </div>
-                                        <div>
-                                            <h3 className="text-xl font-bold text-gray-800 dark:text-white">{exp.title}</h3>
-                                            <p className="text-sm font-medium text-primary-600 dark:text-primary-400">{exp.company} | {exp.period}</p>
-                                        </div>
-                                    </div>
-                                    <p className="text-gray-600 dark:text-gray-300 mb-4 text-sm leading-relaxed">{exp.description}</p>
-                                    <div className="flex flex-wrap gap-2">
-                                        {exp.skills.map((skill, skillIndex) => (
-                                            <span key={skillIndex} className="bg-primary-50 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 text-xs font-medium px-3 py-1 rounded-full border border-primary-200/50 dark:border-primary-700/50">
-                                                {skill}
-                                            </span>
-                                        ))}
-                                    </div>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </div>
+        <section className="py-24 bg-gray-50 dark:bg-black relative overflow-hidden">
+            {/* Background elements */}
+            <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+                <div className="absolute top-[20%] right-0 w-[500px] h-[500px] bg-primary-500/5 rounded-full blur-[100px]" />
+                <div className="absolute bottom-[20%] left-0 w-[400px] h-[400px] bg-accent-500/5 rounded-full blur-[100px]" />
+            </div>
+
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 max-w-5xl">
+                <div className="mb-16 text-center">
+                    <motion.span
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="inline-block py-1 px-3 rounded-full bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-300 text-xs font-bold tracking-wider uppercase mb-4"
+                    >
+                        Career Journey
+                    </motion.span>
+                    <motion.h2
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.1 }}
+                        className="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white"
+                    >
+                        Professional <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-accent-600">Experience</span>
+                    </motion.h2>
+                </div>
+
+                <div className="relative max-w-3xl mx-auto">
+                    {experiences.map((exp, index) => (
+                        <ExperienceCard key={index} experience={exp} index={index} />
+                    ))}
                 </div>
             </div>
-        </div>
+        </section>
     );
 }

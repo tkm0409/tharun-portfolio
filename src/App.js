@@ -78,17 +78,17 @@ function App() {
       <div className="App transition-colors duration-300 ease-in-out">
         <HeroSection />
         <ShortStory />
-        <Element name="skills">
-          <Skills />
-        </Element>
-        <Element name="certifications">
-          <Certifications />
-        </Element>
         <Element name="experience">
           <Experience />
         </Element>
         <Element name="projects">
           <Projects />
+        </Element>
+        <Element name="skills">
+          <Skills />
+        </Element>
+        <Element name="certifications">
+          <Certifications />
         </Element>
         <Element name="education">
           <Education />
