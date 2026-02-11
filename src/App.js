@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ThemeProvider } from './components/ThemeContext';
+import { ReactLenis } from '@studio-freight/react-lenis';
 
 
 import HeroSection from './components/HeroSection';
@@ -15,6 +16,7 @@ import ParallaxGallery from './components/ParallaxGallery';
 import Projects from './components/Projects';
 import GoToTop from './components/GoToTop';
 import Footer from './components/Footer';
+import MagnetCursor from './components/ui/MagnetCursor';
 
 
 function App() {
@@ -75,34 +77,37 @@ function App() {
 
   return (
     <ThemeProvider value={{ isDarkMode, toggleTheme }}>
-      <div className="App transition-colors duration-300 ease-in-out">
-        <HeroSection />
-        <ShortStory />
-        <Element name="experience">
-          <Experience />
-        </Element>
-        <Element name="projects">
-          <Projects />
-        </Element>
-        <Element name="skills">
-          <Skills />
-        </Element>
-        <Element name="certifications">
-          <Certifications />
-        </Element>
-        <Element name="education">
-          <Education />
-        </Element>
-        <Element name="awards">
-          <Achievements />
-          <ParallaxGallery />
-        </Element>
-        <Element name="contact">
-          <Contact isDarkMode={isDarkMode} />
-        </Element>
-        <Footer isDarkMode={isDarkMode} />
-        <GoToTop />
-      </div>
+      <ReactLenis root>
+        <div className="App transition-colors duration-300 ease-in-out">
+          <HeroSection />
+          <ShortStory />
+          <Element name="experience">
+            <Experience />
+          </Element>
+          <Element name="projects">
+            <Projects />
+          </Element>
+          <Element name="skills">
+            <Skills />
+          </Element>
+          <Element name="certifications">
+            <Certifications />
+          </Element>
+          <Element name="education">
+            <Education />
+          </Element>
+          <Element name="awards">
+            <Achievements />
+            <ParallaxGallery />
+          </Element>
+          <Element name="contact">
+            <Contact isDarkMode={isDarkMode} />
+          </Element>
+          <Footer isDarkMode={isDarkMode} />
+          <GoToTop />
+          <MagnetCursor />
+        </div>
+      </ReactLenis>
     </ThemeProvider>
   );
 }

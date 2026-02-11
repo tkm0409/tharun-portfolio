@@ -1,10 +1,25 @@
 import cutoutImage from '../assets/Tharun Kumar Cutout.png';
 import { Link } from 'react-scroll';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useTransform, useSpring } from 'framer-motion';
 import ScrollAwareNav from './ScrollAwareNav';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 const HeroSection = () => {
+    // Scroll Animation Hooks
+    const ref = useRef(null);
+    const { scrollYProgress } = useScroll({
+        target: ref,
+        offset: ["start start", "end start"]
+    });
+
+    const springConfig = { stiffness: 100, damping: 30, restDelta: 0.001 };
+
+    // Parallax Transforms
+    const textY = useSpring(useTransform(scrollYProgress, [0, 1], [0, 200]), springConfig);
+    const imageY = useSpring(useTransform(scrollYProgress, [0, 1], [0, 100]), springConfig);
+    const textOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+    const scaleImage = useSpring(useTransform(scrollYProgress, [0, 1], [1, 1.1]), springConfig);
+
     // Rotating keywords for the hero section
     const keywords = [
         { text: 'RAG-based', color: 'text-orange-600 dark:text-orange-400' },
@@ -29,7 +44,7 @@ const HeroSection = () => {
     };
 
     return (
-        <section className="relative min-h-[550px] md:min-h-screen w-full flex flex-col overflow-hidden bg-gray-50 dark:bg-black transition-colors duration-500">
+        <section ref={ref} className="relative min-h-[550px] md:min-h-screen w-full flex flex-col overflow-hidden bg-gray-50 dark:bg-black transition-colors duration-500">
             {/* Dynamic Background */}
             <div className="absolute inset-0 z-0 pointer-events-none">
                 {/* Light Mode Gradient */}
@@ -49,9 +64,12 @@ const HeroSection = () => {
 
                 {/* Background Text Layer - Behind Image */}
                 <div className="absolute inset-0 flex items-center justify-center z-0 select-none overflow-hidden">
-                    <h1 className="text-[17vw] sm:text-[19vw] font-black text-gray-200/60 dark:text-gray-800 leading-none tracking-tighter whitespace-nowrap animate-fade-in-up transform translate-y-10 sm:translate-y-0">
+                    <motion.h1
+                        style={{ y: textY, opacity: textOpacity }}
+                        className="text-[17vw] sm:text-[19vw] font-black text-gray-200/60 dark:text-gray-800 leading-none tracking-tighter whitespace-nowrap"
+                    >
                         THARUN
-                    </h1>
+                    </motion.h1>
                 </div>
 
                 {/* Content Container */}
@@ -61,9 +79,12 @@ const HeroSection = () => {
                     <div className="md:hidden w-full flex flex-col items-center justify-center px-4 py-8 space-y-6 relative">
                         {/* Mobile Background Text */}
                         <div className="absolute top-8 left-1/2 -translate-x-1/2 z-0 select-none overflow-hidden">
-                            <h1 className="text-[20vw] font-black text-gray-200/50 dark:text-gray-800/70 leading-none tracking-tighter whitespace-nowrap animate-fade-in-up">
+                            <motion.h1
+                                style={{ y: textY }}
+                                className="text-[20vw] font-black text-gray-200/50 dark:text-gray-800/70 leading-none tracking-tighter whitespace-nowrap"
+                            >
                                 THARUN
-                            </h1>
+                            </motion.h1>
                         </div>
 
                         {/* Circular Photo Container */}
@@ -78,10 +99,11 @@ const HeroSection = () => {
 
                             {/* Photo Card */}
                             <div className="relative w-64 h-64 rounded-full overflow-hidden border-4 border-white dark:border-gray-800 shadow-2xl bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900">
-                                <img
+                                <motion.img
+                                    style={{ scale: scaleImage }}
                                     src={cutoutImage}
                                     alt="Tharun Kumar"
-                                    className="w-full h-full object-cover object-top scale-110 -translate-x-4"
+                                    className="w-full h-full object-cover object-top -translate-x-4 scale-110"
                                     draggable="false"
                                     onContextMenu={preventContextMenu}
                                 />
@@ -158,6 +180,7 @@ const HeroSection = () => {
 
                     {/* DESKTOP LAYOUT - Original Side-by-Side Design */}
                     <motion.div
+                        style={{ y: imageY, scale: scaleImage }}
                         className="hidden md:block absolute right-0 bottom-0 z-10 w-auto pointer-events-none"
                         initial={{ opacity: 0, y: 50, scale: 0.9 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}

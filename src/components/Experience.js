@@ -1,4 +1,4 @@
-import { motion} from 'framer-motion';
+import { motion } from 'framer-motion';
 import { FaLaptopCode, FaBriefcase, FaBuilding } from 'react-icons/fa';
 
 const ExperienceCard = ({ experience, index }) => {
@@ -10,8 +10,14 @@ const ExperienceCard = ({ experience, index }) => {
             transition={{ duration: 0.6, delay: index * 0.2 }}
             className="relative pl-8 sm:pl-32 py-6 group"
         >
-            {/* Timeline Line */}
-            <div className="absolute left-2 sm:left-0 top-0 bottom-0 w-0.5 bg-gradient-to-b from-gray-200 via-gray-300 to-gray-200 dark:from-gray-800 dark:via-gray-700 dark:to-gray-800 group-last:bottom-auto group-last:h-full"></div>
+            {/* Timeline Line - Animated */}
+            <motion.div
+                initial={{ height: 0 }}
+                whileInView={{ height: "100%" }}
+                viewport={{ once: true }}
+                transition={{ duration: 1.5, ease: "easeInOut" }}
+                className="absolute left-2 sm:left-0 top-0 w-0.5 bg-gradient-to-b from-gray-200 via-gray-300 to-gray-200 dark:from-gray-800 dark:via-gray-700 dark:to-gray-800 origin-top"
+            ></motion.div>
 
             {/* Timeline Connector Dot */}
             <div className="absolute left-[0.2rem] sm:-left-[0.35rem] top-10 w-4 h-4 rounded-full border-4 border-white dark:border-gray-900 bg-primary-500 shadow-lg z-10 transition-transform duration-300 group-hover:scale-150 group-hover:bg-accent-500"></div>

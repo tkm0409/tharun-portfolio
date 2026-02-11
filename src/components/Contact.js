@@ -1,19 +1,9 @@
 import { useState } from 'react';
+import { motion } from 'framer-motion';
+import { FaPaperPlane, FaWhatsapp, FaEnvelope, FaLinkedin, FaGithub } from 'react-icons/fa';
 
 const Contact = ({ isDarkMode }) => {
     const [message, setMessage] = useState('');
-
-    const contactMethods = [
-        {
-            icon:
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
-                </svg>
-            ,
-            contact: "m.tharunkumar0409@gmail.com",
-            title: "Email"
-        },
-    ];
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -21,60 +11,122 @@ const Contact = ({ isDarkMode }) => {
         window.open(whatsappUrl, '_blank');
     };
 
-    return (
-        <main className={`py-20 md:py-28 ${isDarkMode ? 'bg-gray-900 text-gray-100' : 'bg-gradient-to-b from-white to-gray-50 text-gray-600'}`}>
-            <div className="max-w-screen-xl mx-auto px-4 md:px-8">
-                <div className="max-w-xl space-y-3">
-                    <h3 className="text-3xl sm:text-4xl md:text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-accent-500">
-                        Contact
-                    </h3>
-                    <p className={`text-lg ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-                        I'm here to help and answer any question you might have, I look forward to hearing from you.
-                    </p>
-                </div>
-                <div>
-                    <ul className="mt-10 flex flex-wrap gap-x-12 gap-y-6 items-center lg:gap-x-24">
-                        {
-                            contactMethods.map((item, idx) => (
-                                <li key={idx}>
-                                    <h4 className={`${isDarkMode ? 'text-gray-100' : 'text-gray-800'} text-lg font-semibold`}>{item.title}</h4>
-                                    <div className="mt-3 flex items-center gap-x-3">
-                                        <div className={`flex-none ${isDarkMode ? 'text-primary-400' : 'text-primary-600'}`}>
-                                            {item.icon}
-                                        </div>
-                                        <a href={`mailto:${item.contact}`} className={`hover:text-primary-600 transition-colors ${isDarkMode ? 'text-gray-300 hover:text-primary-400' : 'text-gray-600'}`}>{item.contact}</a>
-                                    </div>
-                                </li>
-                            ))
-                        }
-                    </ul>
-                </div>
+    const socialLinks = [
+        { icon: <FaLinkedin />, url: "https://www.linkedin.com/in/tharunkumar0409", label: "LinkedIn", color: "text-blue-500" },
+        { icon: <FaGithub />, url: "https://github.com/tkm0409", label: "GitHub", color: "text-gray-800 dark:text-white" },
+        { icon: <FaEnvelope />, url: "mailto:m.tharunkumar0409@gmail.com", label: "Email", color: "text-red-500" },
+    ];
 
-                <div className="mt-12 max-w-lg">
-                    <h4 className={`${isDarkMode ? 'text-gray-100' : 'text-gray-800'} text-lg font-semibold mb-4`}>Contact via WhatsApp</h4>
-                    <form onSubmit={handleSubmit} className="space-y-4">
-                        <div>
-                            <label htmlFor="message" className={`block text-sm font-medium mb-2 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>Message</label>
-                            <textarea
-                                id="message"
-                                rows="4"
-                                className={`block w-full rounded-xl border p-3 text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500/50 ${isDarkMode
-                                    ? 'bg-gray-800/80 border-gray-700 text-gray-100 focus:border-primary-500'
-                                    : 'bg-white border-gray-200 text-gray-900 focus:border-primary-500'
-                                    }`}
-                                value={message}
-                                onChange={(e) => setMessage(e.target.value)}
-                                required
-                            ></textarea>
+    return (
+        <section className="relative py-24 overflow-hidden bg-gray-50 dark:bg-black transition-colors duration-500">
+            {/* Background Elements */}
+            <div className="absolute inset-0 pointer-events-none">
+                <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary-500/10 rounded-full blur-[120px] mix-blend-multiply dark:mix-blend-overlay animate-pulse" />
+                <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-accent-500/10 rounded-full blur-[120px] mix-blend-multiply dark:mix-blend-overlay animate-pulse delay-700" />
+            </div>
+
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 max-w-6xl">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-center">
+
+                    {/* Left Column - Floating Contact Card */}
+                    <motion.div
+                        initial={{ opacity: 0, x: -50 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8 }}
+                    >
+                        <div className="p-8 sm:p-10 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border border-white/20 rounded-3xl shadow-xl relative z-20">
+                            <h2 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-6">
+                                Let's <br />
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-accent-600">
+                                    Collaborate
+                                </span>
+                            </h2>
+                            <p className="text-lg text-gray-600 dark:text-gray-300 mb-10 leading-relaxed">
+                                Have a project in mind or just want to chat about AI? I'm always open to discussing new ideas and opportunities.
+                            </p>
+
+                            <div className="space-y-6">
+                                {socialLinks.map((link, idx) => (
+                                    <motion.a
+                                        key={idx}
+                                        href={link.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="flex items-center gap-4 group p-4 rounded-2xl bg-gray-50 dark:bg-gray-800/50 hover:bg-white dark:hover:bg-gray-800 border border-gray-100 dark:border-gray-700 hover:border-primary-200 dark:hover:border-primary-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary-500/10 cursor-pointer"
+                                        whileHover={{ x: 10 }}
+                                    >
+                                        <div className={`text-2xl ${link.color} transition-transform duration-300 group-hover:scale-110`}>
+                                            {link.icon}
+                                        </div>
+                                        <div>
+                                            <h4 className="font-bold text-gray-900 dark:text-white text-lg">{link.label}</h4>
+                                            <p className="text-sm text-gray-500 dark:text-gray-400 font-medium">Connect with me</p>
+                                        </div>
+                                        <div className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity text-primary-500">
+                                            <FaPaperPlane className="transform -rotate-45" />
+                                        </div>
+                                    </motion.a>
+                                ))}
+                            </div>
                         </div>
-                        <button type="submit" className="bg-green-500 text-white px-6 py-2.5 rounded-xl font-medium hover:bg-green-600 transition-colors shadow-sm">
-                            Send via WhatsApp
-                        </button>
-                    </form>
+                    </motion.div>
+
+                    {/* Right Column - Glassmorphic Form */}
+                    <motion.div
+                        initial={{ opacity: 0, x: 50 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8, delay: 0.2 }}
+                        className="relative"
+                    >
+                        <div className="absolute inset-0 bg-gradient-to-br from-primary-500 to-accent-500 rounded-3xl blur-2xl opacity-20 dark:opacity-40 -z-10" />
+
+                        <div className="bg-white/70 dark:bg-gray-900/60 backdrop-blur-2xl rounded-3xl p-8 sm:p-10 border border-white/50 dark:border-gray-700/50 shadow-2xl">
+                            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-8 flex items-center gap-2">
+                                <FaWhatsapp className="text-green-500 text-3xl" />
+                                <span>Quick Chat on WhatsApp</span>
+                            </h3>
+
+                            <form onSubmit={handleSubmit} className="space-y-6">
+                                <div className="space-y-2">
+                                    <label htmlFor="message" className="text-sm font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wider ml-1">
+                                        Your Message
+                                    </label>
+                                    <div className="relative group">
+                                        <div className="absolute -inset-0.5 bg-gradient-to-r from-primary-500 to-accent-500 rounded-xl opacity-0 group-hover:opacity-100 transition duration-500 blur"></div>
+                                        <textarea
+                                            id="message"
+                                            rows="5"
+                                            className="relative block w-full rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-4 text-base text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500/50 focus:border-transparent transition-all resize-none"
+                                            placeholder="Hi Tharun, I'd like to discuss..."
+                                            value={message}
+                                            onChange={(e) => setMessage(e.target.value)}
+                                            required
+                                        ></textarea>
+                                    </div>
+                                </div>
+
+                                <motion.button
+                                    whileHover={{ scale: 1.02 }}
+                                    whileTap={{ scale: 0.98 }}
+                                    type="submit"
+                                    className="w-full py-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold text-lg rounded-xl shadow-lg shadow-green-500/30 hover:shadow-green-500/50 transition-all flex items-center justify-center gap-3"
+                                >
+                                    <span>Send Message</span>
+                                    <FaPaperPlane />
+                                </motion.button>
+                            </form>
+
+                            <p className="mt-6 text-center text-sm text-gray-500 dark:text-gray-400 font-medium">
+                                Usually replies within a few hours
+                            </p>
+                        </div>
+                    </motion.div>
                 </div>
             </div>
-        </main>
-    )
-}
+        </section>
+    );
+};
 
 export default Contact;
