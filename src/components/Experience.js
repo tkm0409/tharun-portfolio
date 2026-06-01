@@ -78,8 +78,8 @@ export default function Experience() {
             title: "Software Engineer",
             company: "Hexaware Technologies",
             period: "Jun 2022 - Present",
-            description: "Specializing in full-stack development with .NET Core, Angular, and React. Leading initiatives in RPA using Automation Anywhere and pioneering GenAI solutions with OpenAI Agents SDK. A key contributor to technical excellence, mentoring junior developers, and driving innovation in enterprise automation.",
-            skills: ["React", ".NET Core", "Azure", "RPA", "GenAI", "Python", "System Design"],
+            description: "Architecting and deploying production-grade agentic AI systems, including multi-agent orchestration pipelines using LangGraph and OpenAI Agents SDK. Pioneering context engineering, evaluation harness design, and RAG-based knowledge systems for enterprise automation. Leading GenAI initiatives across intelligent document processing, conversational AI, and agent-driven workflows that deliver measurable business impact.",
+            skills: ["LangGraph", "OpenAI Agents SDK", "RAG", "Agentic AI", "Python", "LangChain", "Azure", "Context Engineering"],
             icon: <FaBriefcase size={20} />
         },
         {

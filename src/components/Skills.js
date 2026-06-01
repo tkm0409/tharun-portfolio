@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { FaCode, FaServer, FaDatabase, FaCloud, FaRobot, FaBrain } from 'react-icons/fa';
+import { FaCode, FaServer, FaDatabase, FaCloud, FaRobot, FaBrain, FaSitemap, FaChartBar } from 'react-icons/fa';
 
 const SkillCard = ({ icon: Icon, title, description, color, skills, index }) => {
     return (
@@ -50,9 +50,23 @@ export default function Skills() {
         {
             icon: FaBrain,
             title: "AI & GenAI",
-            description: "Building intelligent agents and automation workflows using state-of-the-art LLMs and frameworks. Specialized in RAG architectures and agentic AI.",
+            description: "Engineering production-grade LLM applications with cutting-edge frameworks. Expert in RAG architectures, function calling, and integrating foundation models into real-world pipelines.",
             color: "from-purple-500 to-pink-500",
-            skills: ["OpenAI API", "LangChain", "Vector DBs", "RAG", "Prompt Engineering", "Python"]
+            skills: ["OpenAI API", "Anthropic SDK", "LangChain", "LlamaIndex", "Vector DBs", "RAG", "Prompt Engineering"]
+        },
+        {
+            icon: FaSitemap,
+            title: "Agent Orchestration",
+            description: "Designing stateful, graph-based multi-agent systems. Experienced in tool-calling, agent memory management, MCP integrations, and orchestrating autonomous agent pipelines at scale.",
+            color: "from-violet-600 to-purple-700",
+            skills: ["LangGraph", "OpenAI Agents SDK", "CrewAI", "AutoGen", "MCP", "Tool Calling", "Multi-Agent"]
+        },
+        {
+            icon: FaChartBar,
+            title: "AI Evals & Observability",
+            description: "Building evaluation harnesses and observability layers for production LLM systems. Focused on context engineering, output quality measurement, and token efficiency.",
+            color: "from-rose-500 to-orange-500",
+            skills: ["Eval Harness", "Context Engineering", "Harness Engineering", "LangSmith", "RAGAS", "LLM Tracing", "Token Optimization"]
         },
         {
             icon: FaCode,

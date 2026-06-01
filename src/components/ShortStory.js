@@ -3,7 +3,7 @@ import { TextGenerateEffect } from "./text-generate-effect.tsx";
 
 export default function ShortStory() {
     const story =
-        "With over 3 years of hands-on experience, I specialize in building intelligent automation solutions as an Applied AI Engineer. My expertise spans GenAI technologies including agentic AI frameworks like OpenAI Agents SDK and LangChain, along with Python, LLM integration, and vector databases. Proficient in deploying AI-powered solutions on AWS and Azure cloud platforms, I drive innovation by bridging cutting-edge AI with enterprise automation. Let's build something extraordinary together!";
+        "With over 4 years of hands-on experience, I design and deploy production-grade agentic AI systems as an Applied AI Engineer & Forward Deployed Engineer. My expertise spans multi-agent orchestration with LangGraph and OpenAI Agents SDK, context engineering, evaluation harness design, and RAG pipelines with semantic re-ranking. Proficient in deploying intelligent systems on AWS and Azure, I bridge cutting-edge AI research with enterprise-scale execution. Let's build something extraordinary together!";
 
     return (
         <section className="relative w-full py-16 sm:py-24 bg-white dark:bg-zinc-950 transition-colors duration-500">
@@ -50,7 +50,7 @@ export default function ShortStory() {
                         transition={{ duration: 0.8, delay: 0.3 }}
                         className="mt-12 flex flex-wrap justify-center gap-3"
                     >
-                        {['GenAI', 'LangChain', 'Python', 'AWS', 'Azure', 'Vector Databases'].map((skill, index) => (
+                        {['LangGraph', 'Multi-Agent', 'Context Engineering', 'Eval Harness', 'MCP', 'RAG', 'Python', 'OpenAI SDK'].map((skill, index) => (
                             <span
                                 key={index}
                                 className="px-4 py-2 bg-white dark:bg-zinc-800 text-gray-700 dark:text-gray-300 rounded-full text-sm font-medium shadow-sm border border-gray-200 dark:border-zinc-700 hover:scale-105 transition-transform"

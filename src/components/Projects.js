@@ -64,6 +64,16 @@ const ProjectCard = ({ project, index }) => {
 export default function Projects() {
     const projects = [
         {
+            title: "GenAI Discovery Platform",
+            role: "AI Solution Architect",
+            statusColor: "bg-purple-500",
+            description: "Pioneered multi-agent intelligent systems using LangGraph and OpenAI Agents SDK. Built a RAG-based document analysis platform enabling natural language queries over enterprise knowledge bases, with context engineering, semantic re-ranking, and LangSmith observability for production reliability.",
+            skills: ["LangGraph", "OpenAI Agents SDK", "LangChain", "Python", "Vector DB", "RAG", "LangSmith"],
+            icon: <FaBrain size={28} />,
+            gradient: "from-purple-600 to-indigo-600",
+            colorHex: "#9333ea" // Purple-600
+        },
+        {
             title: "Process Automation Suite",
             role: "Lead RPA Architect",
             statusColor: "bg-emerald-500",
@@ -72,16 +82,6 @@ export default function Projects() {
             icon: <FaRobot size={28} />,
             gradient: "from-emerald-500 to-teal-500",
             colorHex: "#10b981" // Emerald-500
-        },
-        {
-            title: "GenAI Discovery Platform",
-            role: "AI Solution Architect",
-            statusColor: "bg-purple-500",
-            description: "Pioneered the development of intelligent agents using OpenAI SDK and LangChain. Built a RAG-based document analysis system that allows users to query internal knowledge bases with natural language, leveraging vector databases for semantic search.",
-            skills: ["OpenAI", "LangChain", "Python", "Vector DB", "RAG"],
-            icon: <FaBrain size={28} />,
-            gradient: "from-purple-600 to-indigo-600",
-            colorHex: "#9333ea" // Purple-600
         }
     ];
 

@@ -20,22 +20,36 @@ const HeroSection = () => {
     const textOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
     const scaleImage = useSpring(useTransform(scrollYProgress, [0, 1], [1, 1.1]), springConfig);
 
-    // Rotating keywords for the hero section
-    const keywords = [
-        { text: 'RAG-based', color: 'text-orange-600 dark:text-orange-400' },
-        { text: 'Multi-modal', color: 'text-emerald-600 dark:text-emerald-400' },
-        { text: 'Production-ready', color: 'text-orange-600 dark:text-orange-400' },
-        { text: 'Enterprise-ready', color: 'text-emerald-600 dark:text-emerald-400' },
-        { text: 'Agentic', color: 'text-orange-600 dark:text-orange-400' },
+    // Rotating titles for the hero section
+    const titles = [
+        'Applied AI Engineer',
+        'Forward Deployed Engineer',
     ];
 
+    // Rotating keywords for the hero section
+    const keywords = [
+        { text: 'Multi-agent', color: 'text-orange-600 dark:text-orange-400' },
+        { text: 'Context-aware', color: 'text-emerald-600 dark:text-emerald-400' },
+        { text: 'Evaluation-driven', color: 'text-orange-600 dark:text-orange-400' },
+        { text: 'MCP-powered', color: 'text-emerald-600 dark:text-emerald-400' },
+        { text: 'Production-grade', color: 'text-orange-600 dark:text-orange-400' },
+        { text: 'Orchestration-first', color: 'text-emerald-600 dark:text-emerald-400' },
+    ];
+
+    const [currentTitleIndex, setCurrentTitleIndex] = useState(0);
     const [currentKeywordIndex, setCurrentKeywordIndex] = useState(0);
 
     useEffect(() => {
         const interval = setInterval(() => {
-            setCurrentKeywordIndex((prev) => (prev + 1) % keywords.length);
-        }, 2500); // Change every 2.5 seconds
+            setCurrentTitleIndex((prev) => (prev + 1) % titles.length);
+        }, 4000);
+        return () => clearInterval(interval);
+    }, [titles.length]);
 
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentKeywordIndex((prev) => (prev + 1) % keywords.length);
+        }, 2500);
         return () => clearInterval(interval);
     }, [keywords.length]);
 
@@ -112,7 +126,7 @@ const HeroSection = () => {
                                 <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-end justify-center pb-3">
                                     <div className="text-center">
                                         <p className="text-white font-bold text-lg tracking-widest">TKM</p>
-                                        <p className="text-white/80 text-xs font-medium">AI Engineer</p>
+                                        <p className="text-white/80 text-xs font-medium">AI | FDE</p>
                                     </div>
                                 </div>
 
@@ -138,7 +152,20 @@ const HeroSection = () => {
 
                             {/* One-liner with rotating keywords */}
                             <p className="text-base text-gray-700 dark:text-gray-300 font-medium text-center mb-6 leading-relaxed">
-                                Applied AI Engineer building{' '}
+                                <span className="inline-block">
+                                    <AnimatePresence mode="wait">
+                                        <motion.span
+                                            key={currentTitleIndex}
+                                            initial={{ opacity: 0, y: -10 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            exit={{ opacity: 0, y: 10 }}
+                                            transition={{ duration: 0.4 }}
+                                            className="font-bold text-gray-900 dark:text-white"
+                                        >
+                                            {titles[currentTitleIndex]}
+                                        </motion.span>
+                                    </AnimatePresence>
+                                </span>{' '}building{' '}
                                 <span className="inline-block">
                                     <AnimatePresence mode="wait">
                                         <motion.span
@@ -214,7 +241,20 @@ const HeroSection = () => {
 
                             {/* One-liner with rotating keywords */}
                             <p className="text-2xl text-gray-700 dark:text-gray-300 font-medium mb-8 leading-relaxed">
-                                Applied AI Engineer building{' '}
+                                <span className="inline-block">
+                                    <AnimatePresence mode="wait">
+                                        <motion.span
+                                            key={currentTitleIndex}
+                                            initial={{ opacity: 0, y: -10 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            exit={{ opacity: 0, y: 10 }}
+                                            transition={{ duration: 0.4 }}
+                                            className="font-bold text-gray-900 dark:text-white"
+                                        >
+                                            {titles[currentTitleIndex]}
+                                        </motion.span>
+                                    </AnimatePresence>
+                                </span>{' '}building{' '}
                                 <span className="inline-block">
                                     <AnimatePresence mode="wait">
                                         <motion.span
