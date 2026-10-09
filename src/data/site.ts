@@ -276,13 +276,14 @@ export const awards: Award[] = [
     text: 'Functional UI for the Performance Management System.' },
 ];
 
+// Order matters: it maps onto the bento slots in Recognition.astro (a–g).
 export const moments: { caption: string; image: ImageMetadata }[] = [
   { caption: 'Winning day', image: mWinningDay },
   { caption: 'Champions', image: mChampions },
-  { caption: 'GenAI Designathon 2024', image: mGenai2024 },
-  { caption: 'With Hexaware leadership', image: mLeadership },
   { caption: 'CodeRush 2024', image: mCoderush },
+  { caption: 'With Hexaware leadership', image: mLeadership },
   { caption: 'Designathon', image: mDesignathon },
+  { caption: 'GenAI Designathon 2024', image: mGenai2024 },
   { caption: 'Certificate of achievement', image: mCertificate },
 ];
 

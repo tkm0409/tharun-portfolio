@@ -39,20 +39,40 @@ const gallery = await Promise.all(
     </ul>
   </div>
 
-  <div class="wrap moments-head" data-reveal>
-    <span class="eyebrow">Moments</span>
-    <span class="hint" aria-hidden="true">Swipe →</span>
+  <div class="wrap">
+    <div class="moments-head" data-reveal>
+      <div>
+        <span class="eyebrow">Moments</span>
+        <h3>Behind the trophies</h3>
+      </div>
+      <button class="gallery-btn" data-open={awards.length}>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+        View all {moments.length}
+      </button>
+    </div>
+    <ul class="bento" aria-label="Photos from events">
+      {moments.map((m, i) => (
+        <li class={`tile t-${'abcdefg'[i]}`} data-reveal>
+          <button class="tile-btn" data-open={awards.length + i} aria-label={`View photo: ${m.caption}`}>
+            <Image
+              src={m.image}
+              alt=""
+              widths={i === 0 ? [480, 800, 1100] : [360, 560, 800]}
+              sizes={i === 0 || i === 5 ? '(min-width: 1024px) 560px, 92vw' : '(min-width: 1024px) 280px, 46vw'}
+              loading="lazy"
+            />
+            <span class="cap">
+              <span class="idx">{String(i + 1).padStart(2, '0')}</span>
+              <span class="txt">{m.caption}</span>
+              <span class="zoom" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+              </span>
+            </span>
+          </button>
+        </li>
+      ))}
+    </ul>
   </div>
-  <ul class="moments" aria-label="Photos from events">
-    {moments.map((m, i) => (
-      <li>
-        <button class="shot" data-open={awards.length + i} aria-label={`View photo: ${m.caption}`}>
-          <Image src={m.image} alt="" widths={[320, 520]} sizes="(min-width: 768px) 300px, 62vw" loading="lazy" />
-        </button>
-        <span>{m.caption}</span>
-      </li>
-    ))}
-  </ul>
 </section>
 
 <dialog class="lightbox" id="lightbox" aria-label="Photo viewer">
@@ -95,19 +115,46 @@ const gallery = await Promise.all(
   .award h3 { font-size: 19px; font-weight: 600; letter-spacing: -.02em; line-height: 1.25; margin-bottom: 6px; }
   .award p { font-size: 14px; color: var(--ink-2); text-wrap: pretty; }
 
-  .moments-head { display: flex; justify-content: space-between; align-items: center; margin: 72px auto 18px; }
-  .hint { font: 500 12px var(--mono); color: var(--ink-3); }
-  @media (hover: hover) and (min-width: 1024px) { .hint { display: none; } }
-  .moments {
-    list-style: none; display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x proximity; scrollbar-width: none;
-    padding: 0 max(16px, calc((100vw - 1200px) / 2 + 40px)) 6px;
-    scroll-padding: 0 max(16px, calc((100vw - 1200px) / 2 + 40px));
+  /* Moments: bento grid */
+  .moments-head { display: flex; justify-content: space-between; align-items: end; gap: 16px; margin: 80px 0 22px; }
+  .moments-head h3 { font-size: clamp(22px, 3vw, 30px); font-weight: 600; letter-spacing: -.02em; margin-top: 8px; }
+  .gallery-btn {
+    display: inline-flex; align-items: center; gap: 8px; min-height: 42px; padding: 0 16px; border-radius: 999px; flex: none;
+    border: 1px solid var(--line); background: var(--surface); font-size: 14px; font-weight: 500; transition: border-color .2s, color .2s;
   }
-  .moments::-webkit-scrollbar { display: none; }
-  .moments li { flex: none; width: min(62vw, 300px); scroll-snap-align: start; }
-  .moments li:nth-child(odd) .shot :global(img) { aspect-ratio: 4 / 5; }
-  .moments li:nth-child(even) { margin-top: 36px; }
-  .moments span { display: block; font: 500 12px var(--mono); color: var(--ink-3); margin-top: 8px; }
+  @media (hover: hover) { .gallery-btn:hover { border-color: var(--accent); color: var(--accent); } }
+
+  .bento {
+    list-style: none; display: grid; gap: 10px;
+    grid-template-columns: repeat(2, 1fr); grid-auto-rows: clamp(130px, 38vw, 220px);
+    grid-template-areas: "a a" "a a" "b c" "d c" "f f" "e g";
+  }
+  @media (min-width: 1024px) {
+    .bento {
+      gap: 14px; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 230px;
+      grid-template-areas: "a a b c" "a a d c" "e f f g";
+    }
+  }
+  .t-a { grid-area: a; } .t-b { grid-area: b; } .t-c { grid-area: c; } .t-d { grid-area: d; }
+  .t-e { grid-area: e; } .t-f { grid-area: f; } .t-g { grid-area: g; }
+
+  .tile-btn { position: relative; display: block; width: 100%; height: 100%; border-radius: 16px; overflow: hidden; background: var(--surface-2); cursor: zoom-in; isolation: isolate; }
+  .tile-btn :global(img) { width: 100%; height: 100%; object-fit: cover; transition: transform .8s var(--ease-out), filter .4s; }
+  .t-c .tile-btn :global(img), .t-d .tile-btn :global(img), .t-b .tile-btn :global(img) { object-position: center 30%; }
+  .tile-btn::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgb(0 0 0 / .62), transparent 46%); pointer-events: none; z-index: 1; }
+
+  .cap { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; display: flex; align-items: center; gap: 10px; padding: 12px 12px 12px 14px; color: #fff; text-align: left; }
+  .idx { font: 500 11px var(--mono); opacity: .7; }
+  .txt { flex: 1; min-width: 0; font-size: 14px; font-weight: 500; line-height: 1.25; text-shadow: 0 1px 8px rgb(0 0 0 / .4); }
+  .t-a .txt { font-size: clamp(16px, 2vw, 20px); }
+  .zoom { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; flex: none; background: rgb(255 255 255 / .18); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); transition: transform .35s var(--ease-spring), background .2s; }
+  @media (max-width: 640px) { .t-b .idx, .t-c .idx, .t-d .idx, .t-e .idx, .t-g .idx, .t-b .zoom, .t-c .zoom, .t-d .zoom, .t-e .zoom, .t-g .zoom { display: none; } .txt { font-size: 13px; } }
+
+  @media (hover: hover) {
+    .bento:hover .tile-btn :global(img) { filter: saturate(.7) brightness(.85); }
+    .bento .tile-btn:hover :global(img) { transform: scale(1.05); filter: none; }
+    .tile-btn:hover .zoom { transform: scale(1.1) rotate(90deg); background: var(--accent); }
+  }
 
   /* Lightbox */
   .lightbox { width: 100vw; height: 100dvh; max-width: none; max-height: none; border: 0; padding: 0; background: rgb(8 8 7 / .94); color: #EDEAE3; }
