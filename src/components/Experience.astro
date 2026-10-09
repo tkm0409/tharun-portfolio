@@ -1,0 +1,67 @@
+---
+import { experience, education } from '../data/site';
+---
+<section class="block" id="experience">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <div>
+        <div class="eyebrow">Experience</div>
+        <h2>Four years, <span class="serif">one</span> direction.</h2>
+      </div>
+      <p>From QA automation and RPA to full-stack apps, then all-in on GenAI from early 2023. Now leading AI engineering at Accenture.</p>
+    </div>
+
+    <ol class="timeline">
+      {experience.map((job) => (
+        <li class:list={['job', { current: job.current }]} data-reveal>
+          <div class="when">
+            <span class="period">{job.period}</span>
+            {job.location && <span class="loc">{job.location}</span>}
+          </div>
+          <div class="body">
+            <div class="title">
+              <h3>{job.role}</h3>
+              <span class="company">{job.company}{job.current && <span class="now">Now</span>}</span>
+            </div>
+            <ul class="points">
+              {job.points.map((p) => <li>{p}</li>)}
+            </ul>
+            <div class="tags">{job.tags.map((t) => <span class="tag">{t}</span>)}</div>
+          </div>
+        </li>
+      ))}
+      <li class="job edu" data-reveal>
+        <div class="when"><span class="period">{education.period}</span><span class="loc">Education</span></div>
+        <div class="body">
+          <div class="title">
+            <h3>{education.degree}</h3>
+            <span class="company">{education.school}</span>
+          </div>
+          <p class="score">{education.score}</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<style>
+  .timeline { list-style: none; border-top: 1px solid var(--line); }
+  .job { display: grid; gap: 12px; padding: 28px 0; border-bottom: 1px solid var(--line); position: relative; }
+  @media (min-width: 900px) { .job { grid-template-columns: 240px 1fr; gap: 32px; padding: 36px 0; } }
+  .when { display: flex; gap: 12px; align-items: baseline; flex-wrap: wrap; font: 500 13px var(--mono); }
+  @media (min-width: 900px) { .when { flex-direction: column; gap: 6px; } }
+  .period { color: var(--ink-2); }
+  .loc { color: var(--ink-3); }
+  .title { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; margin-bottom: 14px; }
+  h3 { font-size: clamp(21px, 2.6vw, 28px); font-weight: 500; letter-spacing: -.02em; line-height: 1.2; }
+  .company { color: var(--ink-2); display: inline-flex; align-items: center; gap: 8px; }
+  .now { font: 500 11px var(--mono); text-transform: uppercase; letter-spacing: .08em; color: var(--accent); background: var(--accent-soft); padding: 2px 8px; border-radius: 999px; }
+  .points { list-style: none; display: grid; gap: 8px; max-width: 46em; }
+  .points li { position: relative; padding-left: 20px; color: var(--ink-2); text-wrap: pretty; }
+  .points li::before { content: ""; position: absolute; left: 0; top: .72em; width: 8px; height: 1px; background: var(--accent); }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
+  .current::before { content: ""; position: absolute; left: -16px; top: 36px; bottom: 36px; width: 2px; background: var(--accent); border-radius: 2px; display: none; }
+  @media (min-width: 1280px) { .current::before { display: block; } }
+  .edu h3 { font-size: clamp(19px, 2.2vw, 22px); }
+  .score { font: 500 13px var(--mono); color: var(--ink-3); margin-top: -4px; }
+</style>

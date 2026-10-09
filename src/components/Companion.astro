@@ -1,0 +1,138 @@
+---
+import Mascot from './Mascot.astro';
+import { CAST, CAST_ORDER } from '../lib/cast';
+import { sections } from '../data/site';
+
+const hosts = Object.fromEntries([['top', 'tok'], ...sections.map((s) => [s.id, s.host])]);
+const tips = Object.fromEntries(CAST_ORDER.map((n) => [n, { name: CAST[n].name, tips: CAST[n].tips }]));
+---
+<aside class="buddy hidden" id="buddy" aria-label="Site guide">
+  <div class="bubble out" id="bubble" role="status" aria-live="polite">
+    <b id="bubbleName"></b>
+    <span id="bubbleText"></span>
+    <button class="x" id="bubbleX" aria-label="Hide tips">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+  <button class="stage" id="buddyBtn" aria-label="Get a tip from the guide">
+    {CAST_ORDER.map((n) => <Mascot name={n} class={`b-${n}`} />)}
+  </button>
+</aside>
+<script type="application/json" id="buddyData" set:html={JSON.stringify({ hosts, tips })} />
+
+<style>
+  .buddy {
+    position: fixed; z-index: 45; right: 10px; bottom: max(10px, env(safe-area-inset-bottom));
+    display: flex; flex-direction: column; align-items: flex-end; pointer-events: none;
+    transition: transform .5s var(--ease-spring), opacity .3s;
+  }
+  @media (min-width: 768px) { .buddy { right: 24px; bottom: 24px; } }
+  .buddy.hidden { transform: translateY(150%); opacity: 0; }
+  .buddy.hidden * { pointer-events: none !important; }
+
+  .stage { pointer-events: auto; position: relative; width: 58px; aspect-ratio: 1; filter: drop-shadow(0 10px 14px rgb(0 0 0 / .22)); transition: transform .3s var(--ease-spring); }
+  @media (min-width: 768px) { .stage { width: 88px; } }
+  .stage.swap { transform: translateY(130%) scale(.8); transition-duration: .22s; transition-timing-function: ease-in; }
+  .stage :global(.mascot) { position: absolute; inset: 0; display: none; }
+  .stage :global(.mascot.on) { display: block; }
+
+  .bubble {
+    pointer-events: auto; position: relative; max-width: min(270px, calc(100vw - 32px)); margin-bottom: 10px;
+    background: var(--surface); color: var(--ink); border: 1px solid var(--line);
+    padding: 10px 34px 11px 14px; border-radius: 16px 16px 4px 16px; font-size: 14px; line-height: 1.45;
+    box-shadow: 0 12px 30px -14px rgb(0 0 0 / .3);
+    transform-origin: 100% 100%; transition: transform .35s var(--ease-spring), opacity .25s;
+  }
+  .bubble b { display: block; font: 500 11px var(--mono); text-transform: uppercase; letter-spacing: .08em; color: var(--accent); margin-bottom: 2px; }
+  .bubble.out { transform: scale(.85); opacity: 0; pointer-events: none; }
+  .x { position: absolute; top: 4px; right: 4px; width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; color: var(--ink-3); }
+  .x:hover { background: var(--surface-2); color: var(--ink); }
+</style>
+
+<script>
+  import { hop, reduceMotion } from '../scripts/global';
+
+  type Data = { hosts: Record<string, string>; tips: Record<string, { name: string; tips: string[] }> };
+  const { hosts, tips }: Data = JSON.parse(document.getElementById('buddyData')!.textContent!);
+
+  const buddy = document.getElementById('buddy')!;
+  const stage = document.getElementById('buddyBtn')!;
+  const bubble = document.getElementById('bubble')!;
+  const nameEl = document.getElementById('bubbleName')!;
+  const textEl = document.getElementById('bubbleText')!;
+
+  let host = '';
+  let muted = false;
+  try { muted = sessionStorage.getItem('buddy-muted') === '1'; } catch { /* storage unavailable */ }
+  const seen = new Set<string>();
+  const tipIndex: Record<string, number> = {};
+  let bubbleTimer = 0;
+
+  const current = () => stage.querySelector<HTMLElement>('.mascot.on');
+
+  function say(text: string, mood?: string) {
+    if (muted || buddy.classList.contains('hidden')) return;
+    nameEl.textContent = tips[host].name;
+    textEl.textContent = text;
+    bubble.classList.remove('out');
+    const m = current();
+    if (m && mood) { m.dataset.mood = mood; setTimeout(() => delete m.dataset.mood, 2000); }
+    hop(m);
+    clearTimeout(bubbleTimer);
+    bubbleTimer = window.setTimeout(() => bubble.classList.add('out'), 6500);
+  }
+
+  function setHost(next: string) {
+    if (next === host) return;
+    const first = !host;
+    host = next;
+    bubble.classList.add('out');
+    const swapIn = () => {
+      stage.querySelectorAll('.mascot').forEach((m) => m.classList.toggle('on', m.classList.contains(`b-${next}`)));
+      stage.classList.remove('swap');
+      if (!seen.has(next)) { seen.add(next); tipIndex[next] = 1; setTimeout(() => say(tips[next].tips[0]), 350); }
+    };
+    if (first || reduceMotion()) return swapIn();
+    stage.classList.add('swap');
+    setTimeout(swapIn, 230);
+  }
+
+  // Which section is in the middle of the screen decides the host.
+  // The guide hides over the hero (the trace already shows the cast) and over Contact (Ping is there).
+  let section = 'top';
+  let traceVisible = true;
+  function sync() {
+    const hide = section === 'contact' || section === 'footer' || (section === 'top' && traceVisible);
+    const wasHidden = buddy.classList.contains('hidden');
+    buddy.classList.toggle('hidden', hide);
+    if (hide || !hosts[section]) return;
+    if (hosts[section] !== host) setHost(hosts[section]);
+    else if (wasHidden && !seen.has(host)) { seen.add(host); tipIndex[host] = 1; setTimeout(() => say(tips[host].tips[0]), 350); }
+  }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => { if (e.isIntersecting) { section = e.target.id; sync(); } });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  [...Object.keys(hosts), 'footer'].forEach((id) => {
+    const el = document.getElementById(id);
+    if (el) io.observe(el);
+  });
+  const trace = document.querySelector('.trace');
+  if (trace) new IntersectionObserver(([e]) => { traceVisible = e.isIntersecting; sync(); }, { threshold: 0.2 }).observe(trace);
+  else traceVisible = false;
+
+  stage.addEventListener('click', () => {
+    muted = false;
+    try { sessionStorage.removeItem('buddy-muted'); } catch { /* storage unavailable */ }
+    const list = tips[host].tips;
+    const n = tipIndex[host] ?? 0;
+    tipIndex[host] = n + 1;
+    say(list[n % list.length], 'happy');
+  });
+  document.getElementById('bubbleX')!.addEventListener('click', () => {
+    muted = true;
+    bubble.classList.add('out');
+    try { sessionStorage.setItem('buddy-muted', '1'); } catch { /* storage unavailable */ }
+  });
+  document.addEventListener('email-copied', () => say('Copied! Talk soon.', 'happy'));
+  document.addEventListener('project-opened', () => { if (host === 'bolt') say('Good pick. That one took a while to get right.', 'wow'); });
+</script>

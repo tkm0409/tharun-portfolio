@@ -1,70 +1,32 @@
-# Getting Started with Create React App
+# tharunkumaronline
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Personal portfolio of Tharun Kumar Maddala, AI Engineer Lead. Built with [Astro](https://astro.build), plain CSS and a little TypeScript. Light and dark themes, responsive from 320px phones to wide desktops.
 
-## Available Scripts
+## Develop
 
-In the project directory, you can run:
+```bash
+npm install
+npm run dev       # http://localhost:4321
+npm run build     # static site in dist/
+npm run check     # type-check .astro and .ts files
+```
 
-### `npm start`
+## Where things live
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+| Path | What |
+| --- | --- |
+| `src/data/site.ts` | All content: profile, stats, projects, skills, experience, awards, certifications |
+| `src/lib/cast.ts` | The seven plush mascots (SVG), their roles and the tips they say |
+| `src/components/` | One component per section, plus `Nav`, `CommandPalette` (Ctrl/⌘ K) and `Companion` |
+| `src/styles/global.css` | Design tokens (colours for both themes, type) and shared UI |
+| `src/assets/` | Award and event photos, optimised to WebP at build time |
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+To update content, edit `src/data/site.ts`. To add a photo, drop it in `src/assets/awards` or `src/assets/moments` and import it there.
 
-### `npm test`
+## The cast
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Each section has a host who appears in the corner as you scroll: Tok (intro), Bolt (work), Pix (skills), Bean (experience), Nova (recognition), Dot (certifications) and Ping (contact). Their fuzzy look comes from one shared SVG filter in `src/components/PlushDefs.astro`; moods (`think`, `search`, `wow`, `happy`) are switched with a `data-mood` attribute.
 
-### `npm run build`
+## Deploy
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Static output, so Vercel deploys it with zero config (framework preset: Astro).

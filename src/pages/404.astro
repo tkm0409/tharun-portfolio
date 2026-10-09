@@ -1,0 +1,22 @@
+---
+import Base from '../layouts/Base.astro';
+import Mascot from '../components/Mascot.astro';
+---
+<Base title="Page not found · Tharun Kumar Maddala" noindex>
+  <main id="main" class="lost">
+    <Mascot name="pix" mood="search" class="pix" />
+    <p class="code">404 · retrieval failed</p>
+    <h1>Pix couldn't find <span class="serif">that</span> page.</h1>
+    <p class="sub">The headlamp is on, but there's nothing here. It may have moved, or the link has a typo.</p>
+    <a class="btn btn-primary" href="/">Back to the homepage <span class="arrow">→</span></a>
+  </main>
+</Base>
+
+<style>
+  .lost { min-height: 100dvh; display: grid; place-content: center; justify-items: center; text-align: center; gap: 14px; padding: 40px 16px; }
+  .pix { width: min(46vw, 200px); margin-bottom: 8px; }
+  .code { font: 500 13px var(--mono); color: var(--accent); text-transform: uppercase; letter-spacing: .08em; }
+  h1 { font-size: clamp(34px, 6vw, 56px); line-height: 1.05; letter-spacing: -.03em; font-weight: 600; text-wrap: balance; max-width: 14em; }
+  h1 .serif { color: var(--accent); }
+  .sub { color: var(--ink-2); max-width: 32em; margin-bottom: 12px; }
+</style>

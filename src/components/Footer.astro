@@ -1,0 +1,57 @@
+---
+import Mascot from './Mascot.astro';
+import { CAST, CAST_ORDER } from '../lib/cast';
+import { profile } from '../data/site';
+const year = new Date().getFullYear();
+---
+<footer class="footer" id="footer">
+  <div class="wrap">
+    <div class="cast-head">
+      <span class="eyebrow">The cast</span>
+      <p>Seven agents help run this site. Hover or tap to say hi.</p>
+    </div>
+    <ul class="cast">
+      {CAST_ORDER.map((n) => (
+        <li class="hover-hop">
+          <button data-poke-cast={n} aria-label={`${CAST[n].name}, ${CAST[n].role}`}>
+            <Mascot name={n} />
+          </button>
+          <b>{CAST[n].name}</b>
+          <span>{CAST[n].role}</span>
+        </li>
+      ))}
+    </ul>
+    <div class="base">
+      <span>© {year} {profile.name}</span>
+      <span>Built with Astro · <a href="#top">Back to top ↑</a></span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer { border-top: 1px solid var(--line); padding: 56px 0 120px; }
+  @media (min-width: 768px) { .footer { padding-bottom: 36px; } }
+  .cast-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px 24px; margin-bottom: 20px; }
+  .cast-head p { color: var(--ink-3); font-size: 14px; }
+  .cast { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px 8px; }
+  @media (min-width: 640px) { .cast { grid-template-columns: repeat(7, 1fr); } }
+  .cast li { text-align: center; }
+  .cast button { display: block; width: 100%; max-width: 92px; margin: 0 auto 6px; }
+  .cast b { display: block; font-weight: 600; font-size: 14px; }
+  .cast span { font: 500 11px var(--mono); color: var(--ink-3); }
+  .base { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; margin-top: 44px; padding-top: 20px; border-top: 1px solid var(--line); font: 500 13px var(--mono); color: var(--ink-3); }
+  .base a:hover { color: var(--accent); }
+</style>
+
+<script>
+  import { hop } from '../scripts/global';
+  const moods = ['happy', 'wow', 'think', 'search'];
+  document.querySelectorAll<HTMLButtonElement>('[data-poke-cast]').forEach((b, i) => {
+    const m = b.querySelector<HTMLElement>('.mascot')!;
+    b.addEventListener('click', () => {
+      m.dataset.mood = moods[i % moods.length];
+      hop(m);
+      setTimeout(() => delete m.dataset.mood, 1600);
+    });
+  });
+</script>

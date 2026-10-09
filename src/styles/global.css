@@ -1,0 +1,142 @@
+/* ================================================================
+   Tokens
+   ================================================================ */
+:root {
+  --bg: #F4F2EC; --surface: #FBFAF7; --surface-2: #ECE9E1;
+  --ink: #161513; --ink-2: #55524B; --ink-3: #85817A; --line: #DCD8CE;
+  --accent: #E2531A; --accent-soft: #FBE2D6; --on-accent: #fff;
+  --trace-bg: #161513; --trace-ink: #E9E6DE; --trace-dim: #8E8A80; --trace-line: #2B2A27;
+  --stage: #E7E3D9;
+  --ok: #2E9E5B;
+  --radius: 18px;
+  --ease-out: cubic-bezier(.2, .8, .2, 1);
+  --ease-spring: cubic-bezier(.3, 1.5, .5, 1);
+  --sans: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
+  --serif: "Instrument Serif", Georgia, serif;
+  color-scheme: light;
+}
+:root[data-theme="dark"] {
+  --bg: #0E0E0D; --surface: #161614; --surface-2: #1F1E1B;
+  --ink: #EDEAE3; --ink-2: #A9A59B; --ink-3: #75726A; --line: #2A2926;
+  --accent: #FF6B33; --accent-soft: #33190E; --on-accent: #120A06;
+  --trace-bg: #121210; --trace-ink: #E9E6DE; --trace-dim: #7D7A72; --trace-line: #262522;
+  --stage: #0A0A09;
+  --ok: #4CC27E;
+  color-scheme: dark;
+}
+
+/* ================================================================
+   Base
+   ================================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: 88px; }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+body {
+  background: var(--bg); color: var(--ink); font-family: var(--sans);
+  font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased;
+  overflow-x: hidden; -webkit-tap-highlight-color: transparent;
+}
+img, svg { display: block; max-width: 100%; }
+img { height: auto; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 8px; }
+::selection { background: var(--accent); color: var(--on-accent); }
+
+.wrap { max-width: 1200px; margin: 0 auto; padding: 0 16px; }
+@media (min-width: 640px) { .wrap { padding: 0 28px; } }
+@media (min-width: 1024px) { .wrap { padding: 0 40px; } }
+.serif { font-family: var(--serif); font-style: italic; font-weight: 400; }
+.mono { font-family: var(--mono); }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.skip { position: fixed; left: 12px; top: -60px; z-index: 100; background: var(--ink); color: var(--bg); padding: 10px 14px; border-radius: 10px; }
+.skip:focus { top: 12px; }
+
+/* ================================================================
+   Shared UI
+   ================================================================ */
+section.block { padding: 88px 0; }
+@media (min-width: 1024px) { section.block { padding: 128px 0; } }
+
+.sec-head { display: grid; gap: 14px; margin-bottom: 40px; }
+@media (min-width: 900px) { .sec-head { grid-template-columns: 1fr 1fr; align-items: end; margin-bottom: 56px; } }
+.eyebrow { font: 500 12px var(--mono); color: var(--ink-3); text-transform: uppercase; letter-spacing: .08em; display: flex; align-items: center; gap: 10px; }
+.eyebrow::before { content: ""; width: 18px; height: 1px; background: var(--accent); }
+h2 { font-size: clamp(32px, 5vw, 54px); line-height: 1.05; letter-spacing: -.03em; font-weight: 600; margin-top: 12px; text-wrap: balance; }
+h2 .serif { color: var(--accent); }
+.sec-head p { color: var(--ink-2); max-width: 30em; text-wrap: pretty; }
+@media (min-width: 900px) { .sec-head p { justify-self: end; } }
+
+.btn {
+  min-height: 48px; padding: 0 22px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  font-weight: 500; font-size: 15px; transition: transform .2s var(--ease-out), background .2s, color .2s, border-color .2s;
+}
+.btn:active { transform: scale(.97); }
+.btn-primary { background: var(--ink); color: var(--bg); }
+.btn-ghost { border: 1px solid var(--line); background: var(--surface); }
+@media (hover: hover) {
+  .btn-primary:hover { background: var(--accent); color: var(--on-accent); }
+  .btn-ghost:hover { border-color: var(--ink-3); }
+  .btn:hover .arrow { transform: translateX(3px); }
+}
+.btn .arrow { transition: transform .25s; }
+
+.tag { font: 500 12px var(--mono); padding: 4px 10px; border-radius: 999px; border: 1px solid var(--line); color: var(--ink-2); white-space: nowrap; }
+.tag.hot { border-color: transparent; background: var(--accent-soft); color: var(--accent); }
+
+.toast {
+  position: fixed; left: 50%; bottom: calc(80px + env(safe-area-inset-bottom)); z-index: 70;
+  transform: translate(-50%, 20px); opacity: 0; pointer-events: none;
+  background: var(--ink); color: var(--bg); padding: 10px 16px; border-radius: 12px; font-size: 14px; white-space: nowrap;
+  transition: opacity .3s, transform .3s var(--ease-out);
+}
+@media (min-width: 768px) { .toast { bottom: 28px; } }
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+/* Reveal on scroll (enabled by JS so content is visible without it) */
+.js [data-reveal] { opacity: 0; transform: translateY(18px); transition: opacity .7s var(--ease-out), transform .7s var(--ease-out); }
+.js [data-reveal].in { opacity: 1; transform: none; }
+
+/* ================================================================
+   Mascots (SVG is injected as HTML, so these rules are global)
+   ================================================================ */
+.mascot { position: relative; aspect-ratio: 1; color: var(--ink-3); }
+.mascot svg { width: 100%; height: 100%; overflow: visible; }
+.mascot .char { transform-box: view-box; transform-origin: 60px 110px; animation: breathe 3.4s ease-in-out infinite; }
+.mascot:nth-of-type(2n) .char { animation-delay: -1.2s; }
+@keyframes breathe { 0%, 100% { transform: scale(1, 1); } 50% { transform: scale(1.025, .975); } }
+.mascot .blink { transform-box: fill-box; transform-origin: center; animation: blinky 5s infinite; }
+.mascot:nth-of-type(3n) .blink { animation-delay: 1.7s; }
+.mascot:nth-of-type(3n+1) .blink { animation-delay: 3.2s; }
+@keyframes blinky { 0%, 93%, 100% { transform: scaleY(1); } 96% { transform: scaleY(.08); } }
+.mascot .look { transition: transform .15s ease-out; }
+.mascot.hop { animation: hop .7s var(--ease-spring); }
+@keyframes hop { 35% { transform: translateY(-14%) rotate(-5deg); } 65% { transform: translateY(0) scale(1.06, .94); } }
+
+.mascot .alt { display: none; }
+.mascot[data-mood="happy"] .m-dot { display: none; }
+.mascot[data-mood="happy"] .m-happy { display: inline; }
+.mascot[data-mood="think"] .look { transform: translate(3px, -3px) !important; }
+.mascot[data-mood="search"] .look { animation: scan 1.2s ease-in-out infinite; }
+@keyframes scan { 0%, 100% { transform: translateX(-3.5px); } 50% { transform: translateX(3.5px); } }
+.mascot[data-mood="wow"] .look { transform: scale(1.22) !important; transform-box: fill-box; transform-origin: center; }
+.mascot[data-mood="wow"] .m-mouth { display: none; }
+.mascot[data-mood="wow"] .m-wow-mouth,
+.mascot[data-mood="think"] .m-think,
+.mascot[data-mood="search"] .m-search,
+.mascot[data-mood="wow"] .m-wow { display: inline; }
+.mascot .bubbles circle { animation: bob 1.4s ease-in-out infinite; }
+.mascot .bubbles circle:nth-child(2) { animation-delay: .2s; }
+.mascot .bubbles circle:nth-child(3) { animation-delay: .4s; }
+@keyframes bob { 50% { transform: translateY(-3px); } }
+.mascot .spark { transform-box: fill-box; transform-origin: center; animation: twinkle 1s ease-in-out infinite; }
+@keyframes twinkle { 50% { transform: scale(.6) rotate(20deg); opacity: .6; } }
+@media (hover: hover) { .hover-hop:hover .mascot { animation: hop .7s var(--ease-spring); } }
+
+::view-transition-old(root), ::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .js [data-reveal] { opacity: 1; transform: none; }
+}

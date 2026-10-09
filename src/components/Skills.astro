@@ -1,0 +1,44 @@
+---
+import { capabilities } from '../data/site';
+---
+<section class="block" id="skills">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <div>
+        <div class="eyebrow">Capabilities</div>
+        <h2>The <span class="serif">toolkit,</span> in order of use.</h2>
+      </div>
+      <p>The first two groups are where I spend most days. The rest is what it takes to get an agent wired into a real enterprise and keep it there.</p>
+    </div>
+
+    <div class="groups">
+      {capabilities.map((g, i) => (
+        <div class:list={['group', { core: i < 2 }]} data-reveal>
+          <div class="label">
+            <span class="num">{String(i + 1).padStart(2, '0')}</span>
+            <h3>{g.title}</h3>
+            <span class="note">{g.note}</span>
+          </div>
+          <ul class="items">
+            {g.items.map((it) => <li>{it}</li>)}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .groups { border-top: 1px solid var(--line); }
+  .group { display: grid; gap: 14px; padding: 26px 0; border-bottom: 1px solid var(--line); }
+  @media (min-width: 900px) { .group { grid-template-columns: 340px 1fr; gap: 32px; padding: 32px 0; } }
+  .label { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  .num { font: 500 13px var(--mono); color: var(--ink-3); }
+  h3 { font-size: clamp(20px, 2.4vw, 24px); font-weight: 500; letter-spacing: -.02em; }
+  .note { font: 500 11px var(--mono); text-transform: uppercase; letter-spacing: .08em; color: var(--ink-3); border: 1px solid var(--line); padding: 2px 8px; border-radius: 999px; }
+  .core .note { color: var(--accent); border-color: transparent; background: var(--accent-soft); }
+  .items { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
+  .items li { font-size: 15px; padding: 6px 12px; border-radius: 10px; background: var(--surface); border: 1px solid var(--line); color: var(--ink-2); transition: color .2s, border-color .2s, transform .2s var(--ease-out); }
+  .core .items li { color: var(--ink); }
+  @media (hover: hover) { .items li:hover { color: var(--accent); border-color: var(--accent); transform: translateY(-2px); } }
+</style>
