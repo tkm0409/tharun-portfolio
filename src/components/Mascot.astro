@@ -1,0 +1,22 @@
+---
+import { castSVG, type CastName } from '../lib/cast';
+
+interface Props {
+  name: CastName;
+  mood?: 'think' | 'search' | 'wow' | 'happy';
+  class?: string;
+  id?: string;
+  label?: string;
+}
+const { name, mood, class: className, id, label } = Astro.props;
+---
+<div
+  class:list={['mascot', className]}
+  data-m={name}
+  data-mood={mood}
+  id={id}
+  role={label ? 'img' : undefined}
+  aria-label={label}
+  aria-hidden={label ? undefined : 'true'}
+  set:html={castSVG(name)}
+/>

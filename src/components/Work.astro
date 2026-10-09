@@ -1,0 +1,119 @@
+---
+import { projects } from '../data/site';
+const count = (k: string) => projects.filter((p) => p.kind === k).length;
+const filters = [
+  { id: 'all', label: 'All', n: projects.length },
+  { id: 'production', label: 'Production', n: count('production') },
+  { id: 'hackathon', label: 'Hackathons', n: count('hackathon') },
+];
+---
+<section class="block" id="work">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <div>
+        <div class="eyebrow">Selected work</div>
+        <h2>Systems that <span class="serif">earn</span> their keep.</h2>
+      </div>
+      <p>Production agents shipped to real users, plus the hackathon builds that won. Each one started with a messy business problem. Tap a row for the story.</p>
+    </div>
+
+    <div class="filters" role="tablist" aria-label="Filter projects">
+      {filters.map((f, i) => (
+        <button role="tab" aria-selected={i === 0 ? 'true' : 'false'} data-filter={f.id}>
+          {f.label} <span>{f.n}</span>
+        </button>
+      ))}
+    </div>
+
+    <ol class="work">
+      {projects.map((p, i) => (
+        <li class:list={['row', { open: i === 0 }]} data-kind={p.kind}>
+          <button class="row-btn" aria-expanded={i === 0 ? 'true' : 'false'} aria-controls={`case-${i}`}>
+            <span class="row-idx">{String(i + 1).padStart(2, '0')}</span>
+            <span class="row-title">{p.title}<span class="row-sub">{p.sub}</span></span>
+            <span class="row-tags">
+              {p.award && <span class="tag hot">🏆 {p.award}</span>}
+              {p.metrics?.map((m) => <span class="tag hot">{m}</span>)}
+              {p.tags.slice(0, p.metrics || p.award ? 2 : 3).map((t) => <span class="tag">{t}</span>)}
+            </span>
+            <span class="row-meta">{p.meta}</span>
+            <span class="plus" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+            </span>
+          </button>
+          <div class="row-panel" id={`case-${i}`}>
+            <div>
+              <div class="case">
+                <div class="case-tags">
+                  {p.award && <span class="tag hot">🏆 {p.award} · {p.meta}</span>}
+                  {p.metrics?.map((m) => <span class="tag hot">{m}</span>)}
+                  {p.tags.map((t) => <span class="tag">{t}</span>)}
+                </div>
+                <div><h3>Problem</h3><p>{p.problem}</p></div>
+                <div><h3>Approach</h3><p>{p.approach}</p></div>
+                <div><h3>Outcome</h3><p>{p.outcome}</p></div>
+              </div>
+            </div>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .filters { display: inline-flex; gap: 4px; padding: 4px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); margin-bottom: 24px; max-width: 100%; overflow-x: auto; scrollbar-width: none; }
+  .filters button { padding: 8px 14px; border-radius: 999px; font-size: 14px; color: var(--ink-2); white-space: nowrap; transition: background .2s, color .2s; }
+  .filters button span { font: 500 11px var(--mono); color: var(--ink-3); margin-left: 4px; }
+  .filters button[aria-selected="true"] { background: var(--ink); color: var(--bg); }
+  .filters button[aria-selected="true"] span { color: inherit; opacity: .6; }
+
+  .work { list-style: none; border-top: 1px solid var(--line); }
+  .row { border-bottom: 1px solid var(--line); }
+  .row[hidden] { display: none; }
+  .row-btn { width: 100%; text-align: left; display: grid; grid-template-columns: 34px 1fr 32px; gap: 12px; align-items: center; padding: 22px 0; }
+  @media (min-width: 1000px) { .row-btn { grid-template-columns: 56px 1.25fr 1fr 92px 32px; gap: 24px; padding: 28px 0; } }
+  .row-idx { font: 500 13px var(--mono); color: var(--ink-3); align-self: start; padding-top: 6px; }
+  @media (min-width: 1000px) { .row-idx { align-self: center; padding-top: 0; } }
+  .row-title { font-size: clamp(20px, 2.5vw, 27px); font-weight: 500; letter-spacing: -.02em; line-height: 1.2; transition: color .2s; }
+  @media (hover: hover) { .row-btn:hover .row-title { color: var(--accent); } }
+  .row-sub { display: block; font-size: 14px; color: var(--ink-3); margin-top: 4px; letter-spacing: 0; line-height: 1.4; }
+  .row-tags { display: none; flex-wrap: wrap; gap: 6px; }
+  @media (min-width: 1000px) { .row-tags { display: flex; } }
+  .row-meta { display: none; font: 500 13px var(--mono); color: var(--ink-3); text-align: right; }
+  @media (min-width: 1000px) { .row-meta { display: block; } }
+  .plus { width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--line); display: grid; place-items: center; transition: transform .35s var(--ease-out), background .2s, color .2s; }
+  .row.open .plus { transform: rotate(45deg); background: var(--ink); color: var(--bg); border-color: var(--ink); }
+
+  .row-panel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .45s var(--ease-out); }
+  .row.open .row-panel { grid-template-rows: 1fr; }
+  .row-panel > div { overflow: hidden; }
+  .case { display: grid; gap: 20px; padding: 0 0 30px; }
+  @media (min-width: 640px) { .case { grid-template-columns: repeat(3, 1fr); } }
+  @media (min-width: 1000px) { .case { margin-left: 80px; gap: 28px; } }
+  .case-tags { display: flex; flex-wrap: wrap; gap: 6px; grid-column: 1 / -1; }
+  .case h3 { font: 500 12px var(--mono); color: var(--ink-3); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 8px; }
+  .case p { color: var(--ink-2); font-size: 15px; text-wrap: pretty; }
+</style>
+
+<script>
+  const section = document.getElementById('work')!;
+  const rows = [...section.querySelectorAll<HTMLLIElement>('.row')];
+
+  rows.forEach((row) => {
+    const btn = row.querySelector<HTMLButtonElement>('.row-btn')!;
+    btn.addEventListener('click', () => {
+      const open = row.classList.toggle('open');
+      btn.setAttribute('aria-expanded', String(open));
+      if (open) document.dispatchEvent(new CustomEvent('project-opened'));
+    });
+  });
+
+  section.querySelectorAll<HTMLButtonElement>('[data-filter]').forEach((b, _, all) => {
+    b.addEventListener('click', () => {
+      all.forEach((x) => x.setAttribute('aria-selected', String(x === b)));
+      const f = b.dataset.filter;
+      rows.forEach((r) => (r.hidden = f !== 'all' && r.dataset.kind !== f));
+    });
+  });
+</script>

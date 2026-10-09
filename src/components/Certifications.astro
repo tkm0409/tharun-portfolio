@@ -1,0 +1,61 @@
+---
+import { certifications } from '../data/site';
+const total = certifications.reduce((n, g) => n + g.items.length, 0);
+const top = new Set(['Professional', 'Expert']);
+---
+<section class="block" id="certifications">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <div>
+        <div class="eyebrow">Certifications · {total}</div>
+        <h2>Verified, not just <span class="serif">claimed.</span></h2>
+      </div>
+      <p>Across AWS, Microsoft and Automation Anywhere, from foundations up to professional and expert level. Every one links to its public credential.</p>
+    </div>
+
+    <div class="issuers">
+      {certifications.map((g) => (
+        <div class="issuer" data-reveal>
+          <div class="who">
+            <span class="badge" aria-hidden="true">{g.short}</span>
+            <h3>{g.issuer}</h3>
+            <span class="n">{g.items.length}</span>
+          </div>
+          <ul>
+            {g.items.map((c) => (
+              <li>
+                <a href={c.url} target="_blank" rel="noopener noreferrer" class:list={{ top: top.has(c.level) }}>
+                  <span class="name">{c.name}</span>
+                  <span class="level">{c.level}</span>
+                  <span class="verify">Verify <span aria-hidden="true">↗</span><span class="sr-only">(opens in a new tab)</span></span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .issuers { border-top: 1px solid var(--line); }
+  .issuer { display: grid; gap: 10px; padding: 26px 0; border-bottom: 1px solid var(--line); }
+  @media (min-width: 900px) { .issuer { grid-template-columns: 340px 1fr; gap: 32px; padding: 32px 0; } }
+  .who { display: flex; align-items: center; gap: 12px; align-self: start; }
+  .badge { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; background: var(--ink); color: var(--bg); font: 600 13px var(--mono); flex: none; }
+  h3 { font-size: clamp(19px, 2.2vw, 22px); font-weight: 500; letter-spacing: -.02em; }
+  .n { font: 500 12px var(--mono); color: var(--ink-3); }
+  ul { list-style: none; }
+  a { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 4px 16px; padding: 13px 0; border-top: 1px dashed var(--line); }
+  li:first-child a { border-top: 0; }
+  @media (min-width: 640px) { a { grid-template-columns: 1fr 120px 80px; } }
+  .name { font-size: 16px; transition: color .2s; }
+  .level { font: 500 12px var(--mono); color: var(--ink-3); grid-row: 2; }
+  @media (min-width: 640px) { .level { grid-row: auto; } }
+  .top .name { font-weight: 600; }
+  .top .level { color: var(--accent); }
+  .verify { font: 500 13px var(--mono); color: var(--ink-3); text-align: right; grid-row: 1 / span 2; grid-column: 2; transition: color .2s; }
+  @media (min-width: 640px) { .verify { grid-row: auto; grid-column: auto; } }
+  @media (hover: hover) { a:hover .name, a:hover .verify { color: var(--accent); } }
+</style>

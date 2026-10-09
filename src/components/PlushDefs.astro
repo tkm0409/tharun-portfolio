@@ -1,0 +1,35 @@
+---
+// Shared SVG defs for the cast: a fur filter plus shading gradients.
+const grads: [string, string, string, string][] = [
+  ['g-orange', '#FFB08A', '#FF6B33', '#C23C0C'],
+  ['g-mint', '#A6FADC', '#1FC995', '#0B8460'],
+  ['g-cobalt', '#9EB0FF', '#4560F5', '#1F2F9A'],
+  ['g-lavender', '#DCCBFF', '#9B7BFF', '#5636C2'],
+  ['g-pink', '#FFB0D2', '#F2559A', '#AE1F66'],
+  ['g-yellow', '#FFE47A', '#FFC21A', '#C98800'],
+  ['g-lime', '#EEFF9A', '#A6E22E', '#5F900A'],
+];
+---
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <filter id="plush" x="-12%" y="-12%" width="124%" height="124%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="4" result="n" />
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="5" xChannelSelector="R" yChannelSelector="G" result="d" />
+      <feTurbulence type="fractalNoise" baseFrequency="2.2" numOctaves="1" seed="11" result="f" />
+      <feColorMatrix in="f" type="matrix" values=".33 .33 .33 0 0  .33 .33 .33 0 0  .33 .33 .33 0 0  0 0 0 0 1" result="g" />
+      <feComposite in="d" in2="g" operator="arithmetic" k1="0.55" k2="0.74" k3="0" k4="0" result="t" />
+      <feComposite in="t" in2="d" operator="in" />
+    </filter>
+    {grads.map(([id, a, b, c]) => (
+      <radialGradient id={id} cx="36%" cy="30%" r="78%">
+        <stop offset="0" stop-color={a} /><stop offset=".5" stop-color={b} /><stop offset="1" stop-color={c} />
+      </radialGradient>
+    ))}
+    <radialGradient id="g-gloss" cx="34%" cy="28%" r="75%">
+      <stop offset="0" stop-color="#5E5E5E" /><stop offset=".45" stop-color="#1B1B1B" /><stop offset="1" stop-color="#000" />
+    </radialGradient>
+    <radialGradient id="g-shadow">
+      <stop offset="0" stop-color="#000" stop-opacity=".3" /><stop offset="1" stop-color="#000" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+</svg>
