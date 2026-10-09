@@ -30,3 +30,7 @@ Each section has a host who appears in the corner as you scroll: Tok (intro), Bo
 ## Deploy
 
 Static output, so Vercel deploys it with zero config (framework preset: Astro).
+
+## Share card
+
+`src/pages/og.astro` is the 1200x630 link-preview image. After changing it, run `npm run dev` and then `npm run og` to re-render `public/og-image.jpg`.

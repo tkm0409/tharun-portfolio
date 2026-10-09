@@ -1,0 +1,59 @@
+---
+// Social share card. Rendered to public/og-image.jpg with `npm run og` (see scripts/og.mjs).
+import '../styles/global.css';
+import PlushDefs from '../components/PlushDefs.astro';
+import Mascot from '../components/Mascot.astro';
+import { profile } from '../data/site';
+import type { CastName } from '../lib/cast';
+const friends: CastName[] = ['bolt', 'pix', 'bean', 'nova', 'dot', 'ping'];
+---
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex" />
+    <title>Share card</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@500&family=Instrument+Serif:ital@1&display=block" />
+  </head>
+  <body>
+    <PlushDefs />
+    <div class="card">
+      <div class="left">
+        <span class="status"><span class="dot"></span>{profile.availability}</span>
+        <h1>I build agentic AI systems that hold up in <span class="serif">production.</span></h1>
+        <div class="who">
+          <b>{profile.name}</b>
+          <span>{profile.role} · {profile.company} · {profile.location.split(',')[0]}</span>
+        </div>
+      </div>
+      <div class="right">
+        <Mascot name="tok" mood="happy" class="tok" />
+        <div class="friends">{friends.map((f) => <Mascot name={f} />)}</div>
+      </div>
+      <span class="url">tharunkumaronline.vercel.app</span>
+    </div>
+  </body>
+</html>
+
+<style>
+  html, body { margin: 0; background: #0E0E0D; }
+  .card {
+    width: 1200px; height: 630px; position: relative; overflow: hidden; box-sizing: border-box;
+    display: grid; grid-template-columns: 1fr 400px; gap: 24px; padding: 64px 64px 56px 72px;
+    background: radial-gradient(700px 500px at 88% 40%, #2A1A12 0%, transparent 70%), #0E0E0D;
+    color: #EDEAE3;
+  }
+  .left { display: flex; flex-direction: column; justify-content: space-between; }
+  .status { align-self: flex-start; display: inline-flex; align-items: center; gap: 12px; padding: 9px 18px 9px 14px; border: 1px solid #2A2926; border-radius: 999px; font: 500 18px var(--mono); color: #A9A59B; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; background: #4CC27E; box-shadow: 0 0 0 5px rgb(76 194 126 / .18); }
+  h1 { font: 600 66px/1.03 var(--sans); letter-spacing: -0.035em; margin: 0; }
+  h1 .serif { color: #FF6B33; font-size: 1.08em; letter-spacing: -0.01em; }
+  .who { display: grid; gap: 6px; }
+  .who b { font: 600 30px var(--sans); letter-spacing: -0.02em; }
+  .who span { font: 500 18px var(--mono); color: #A9A59B; }
+  .right { display: grid; align-content: center; justify-items: center; gap: 18px; }
+  .tok { width: 300px; }
+  .friends { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; width: 400px; }
+  .url { position: absolute; right: 64px; bottom: 30px; font: 500 16px var(--mono); color: #75726A; }
+  .card :global(.mascot .char), .card :global(.mascot .blink) { animation: none; }
+</style>
