@@ -18,6 +18,9 @@ import mGenai2024 from '../assets/moments/genai-designathon-2024.jpeg';
 import mLeadership from '../assets/moments/with-hexaware-leadership.jpeg';
 import mWinningDay from '../assets/moments/winning-day.jpeg';
 
+import claudeDeveloper from '../assets/badges/claude-certified-developer-foundations.png';
+import claudeAssociate from '../assets/badges/claude-certified-associate-foundations.png';
+
 /* ------------------------------------------------------------------ */
 /* Profile                                                            */
 /* ------------------------------------------------------------------ */
@@ -294,7 +297,17 @@ export const moments: { caption: string; image: ImageMetadata }[] = [
 const ms = 'https://learn.microsoft.com/api/credentials/share/en-gb/TharunkumarMaddala-6138/';
 const credly = 'https://www.credly.com/badges/';
 
-export const certifications = [
+export type Certification = { name: string; level: string; url: string; badge?: ImageMetadata };
+
+export const certifications: { issuer: string; short: string; items: Certification[] }[] = [
+  {
+    issuer: 'Anthropic',
+    short: 'AN',
+    items: [
+      { name: 'Claude Certified Developer', level: 'Foundations', badge: claudeDeveloper, url: `${credly}7c274b73-d797-4d8d-bba2-673944771652/public_url` },
+      { name: 'Claude Certified Associate', level: 'Foundations', badge: claudeAssociate, url: `${credly}b75e710a-32fd-44a9-9446-fe16c175e2bd/public_url` },
+    ],
+  },
   {
     issuer: 'Amazon Web Services',
     short: 'AWS',

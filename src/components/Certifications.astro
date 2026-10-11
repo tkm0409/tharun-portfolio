@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import { certifications } from '../data/site';
 const total = certifications.reduce((n, g) => n + g.items.length, 0);
 const top = new Set(['Professional', 'Expert']);
@@ -10,7 +11,7 @@ const top = new Set(['Professional', 'Expert']);
         <div class="eyebrow">Certifications · {total}</div>
         <h2>Verified, not just <span class="serif">claimed.</span></h2>
       </div>
-      <p>Across AWS, Microsoft and Automation Anywhere, from foundations up to professional and expert level. Every one links to its public credential.</p>
+      <p>Across Anthropic, AWS, Microsoft and Automation Anywhere, from foundations up to professional and expert level. Every one links to its public credential.</p>
     </div>
 
     <div class="issuers">
@@ -21,6 +22,22 @@ const top = new Set(['Professional', 'Expert']);
             <h3>{g.issuer}</h3>
             <span class="n">{g.items.length}</span>
           </div>
+          {g.items.every((c) => c.badge) ? (
+            <ul class="badges">
+              {g.items.map((c) => (
+                <li>
+                  <a href={c.url} target="_blank" rel="noopener noreferrer" class="badge-card">
+                    <Image src={c.badge!} alt={`${c.name} — ${c.level} badge`} widths={[160, 240, 320]} sizes="(min-width: 640px) 128px, 96px" loading="lazy" class="badge-img" />
+                    <span class="badge-text">
+                      <span class="level new">{c.level} · New</span>
+                      <span class="name">{c.name}</span>
+                      <span class="verify">Verify on Credly <span aria-hidden="true">↗</span><span class="sr-only">(opens in a new tab)</span></span>
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          ) : (
           <ul>
             {g.items.map((c) => (
               <li>
@@ -32,6 +49,7 @@ const top = new Set(['Professional', 'Expert']);
               </li>
             ))}
           </ul>
+          )}
         </div>
       ))}
     </div>
@@ -58,4 +76,24 @@ const top = new Set(['Professional', 'Expert']);
   .verify { font: 500 13px var(--mono); color: var(--ink-3); text-align: right; grid-row: 1 / span 2; grid-column: 2; transition: color .2s; }
   @media (min-width: 640px) { .verify { grid-row: auto; grid-column: auto; } }
   @media (hover: hover) { a:hover .name, a:hover .verify { color: var(--accent); } }
+
+  /* Badge cards (issuers that award visual badges) */
+  .badges { display: grid; gap: 12px; }
+  @media (min-width: 640px) { .badges { grid-template-columns: 1fr 1fr; gap: 16px; } }
+  .badge-card {
+    display: grid; grid-template-columns: 96px 1fr; align-items: center; gap: 18px; padding: 16px 18px 16px 14px; border: 1px solid var(--line);
+    border-radius: 18px; background: var(--surface); transition: border-color .2s, transform .35s var(--ease-out), box-shadow .35s;
+  }
+  li:first-child .badge-card { border-top: 1px solid var(--line); }
+  @media (min-width: 640px) { .badge-card { grid-template-columns: 128px 1fr; padding: 20px 22px 20px 18px; } }
+  .badge-card :global(.badge-img) { width: 100%; height: auto; filter: drop-shadow(0 10px 14px rgb(0 0 0 / .18)); transition: transform .5s var(--ease-spring); }
+  .badge-text { display: grid; gap: 4px; }
+  .badge-card .name { font-weight: 600; font-size: 17px; letter-spacing: -.01em; line-height: 1.25; }
+  .badge-card .level { grid-row: auto; }
+  .badge-card .verify { grid-row: auto; grid-column: auto; text-align: left; margin-top: 6px; }
+  .new { color: var(--accent); }
+  @media (hover: hover) {
+    .badge-card:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 18px 40px -24px rgb(0 0 0 / .4); }
+    .badge-card:hover :global(.badge-img) { transform: rotate(-8deg) scale(1.06); }
+  }
 </style>
